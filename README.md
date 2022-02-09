@@ -16,12 +16,15 @@
 * Препроцессор Less
 
 ## Внешний вид страницы списка чатов:
-![Страница списка чатов](https://github.com/AlexKorostelev/middle.messenger.praktikum.yandex/static/screenshots/chatlist.png "Страница списка чатов")
-
+![chatlist](https://user-images.githubusercontent.com/53473616/153272723-350568e7-921d-4632-935a-0c79ee405d51.png)
 
 ## Установка
 
 ### Запуск проекта осуществляется командой:
-* ### npm run start
+```
+npm run start
+```
 ### Сборка проекта (в директорий build):
-* ### npm run build
+```
+npm run build
+```
