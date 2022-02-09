@@ -1,4 +1,5 @@
 # Веб-приложение для обмена сообщениями.
+### Ссылка на ПР: [https://github.com/AlexKorostelev/middle.messenger.praktikum.yandex/pull/1](https://github.com/AlexKorostelev/middle.messenger.praktikum.yandex/pull/1 "Ссылка на ПР")
 ### Ссылка на главную страницу: [https://alex-korostelev-messenger.netlify.app/index.html](https://alex-korostelev-messenger.netlify.app/index.html "Ссылка на страничку приложения")
 ### URL адреса страниц:
 * [Список чатов](https://alex-korostelev-messenger.netlify.app/pages/conversations/conversations.html "Ссылка на страничку списка чатов")
