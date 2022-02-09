@@ -7,6 +7,7 @@
 * [Настройки профиля](https://alex-korostelev-messenger.netlify.app/pages/settings/profile/profile.html "Ссылка на страничку настроек профиля")
 * [Настройки профиля (смена пароля)](https://alex-korostelev-messenger.netlify.app/pages/settings/password/password.html "Ссылка на страничку смена пароля")
 * [Страничка 404](https://alex-korostelev-messenger.netlify.app/pages/errors/error404.html "Ссылка на страничку 404")
+* [Страничка 5xx](https://alex-korostelev-messenger.netlify.app/pages/errors/error5xx.html "Ссылка на страничку 5xx")
 ### В качестве дизайн-макета использовались [шаблоны от Яндекс](https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1 "Ссылка на макеты Figma") и веб-приложение Телеграмм.
 ### Используемые технологии:
 * Шаблонизатор handlebars
