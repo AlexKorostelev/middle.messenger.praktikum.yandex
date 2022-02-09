@@ -1,3 +1,5 @@
+### Ссылка на ПР: [https://github.com/AlexKorostelev/middle.messenger.praktikum.yandex/pull/1](https://github.com/AlexKorostelev/middle.messenger.praktikum.yandex/pull/1 "Ссылка на ПР")
+---
 ### Ветка, в которой делаете задания спринта, должна называться sprint_i, где i - номер спринта. Не переименовывайте её.
 
 ### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main. 
