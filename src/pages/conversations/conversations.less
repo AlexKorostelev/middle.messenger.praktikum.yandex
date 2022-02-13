@@ -5,8 +5,9 @@
 @messageblock-width  : 400px;
 
 body {
-  margin : 0;
-  padding: 0;
+  margin     : 0;
+  padding    : 0;
+  font-family: 'Roboto';
 }
 
 .pagecontainer {
@@ -54,6 +55,7 @@ body {
           background   : #e2e2e2;
           border-radius: 20px;
           padding      : 0 10px;
+          font-family  : @baseFontFamily;
         }
       }
     }
@@ -93,6 +95,7 @@ body {
 
           .chatlist-chatitem__title {
             font-weight   : bolder;
+            font-size     : 16px;
             font-family   : @baseFontFamily;
             color         : @color-dark-grey;
             padding-bottom: 5px;
@@ -102,7 +105,7 @@ body {
             color             : @color-secondary;
             overflow          : hidden;
             font-family       : @baseFontFamily;
-            font-size         : 14px;
+            font-size         : 16px;
             // line-height: 20px;
             display           : -webkit-box;
             -webkit-line-clamp: 2;
@@ -180,7 +183,8 @@ body {
         padding      : 10px;
         width        : @messageblock-width;
         font-family  : @baseFontFamily;
-        font-size    : 15px;
+        color        : @color-dark-grey;
+        font-size    : 16px;
         border-radius: 20px;
         align-self   : flex-start;
         margin-bottom: 10px;
@@ -192,7 +196,8 @@ body {
         padding-bottom: 10px;
         width         : @messageblock-width;
         font-family   : @baseFontFamily;
-        font-size     : 15px;
+        color         : @color-dark-grey;
+        font-size     : 16px;
         border-radius : 20px;
         align-self    : flex-end;
         margin-bottom : 10px;
@@ -214,14 +219,17 @@ body {
         border       : none;
         background   : #e2e2e2;
         border-radius: 20px;
-        padding-left : 20px;
+        padding-left : 10px;
+        font-family  : @baseFontFamily;
       }
 
       .send-message-block__button-addmessage {
+        padding      : 0 10px;
         height       : @baseElementHeight;
         margin-left  : 10px;
         border-radius: 20px;
         border       : 1px solid @border-color;
+        font-family  : @baseFontFamily;
 
         &:hover {
           background: #e4edfd;
