@@ -1,95 +1,93 @@
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="./conversations.less">
-        <script>
-            setTimeout(() => {
-                const collection = document.getElementsByClassName('messagelist');
-                collection.length && collection[0].scrollTo({
-                    top: collection[0].scrollHeight,
-                    behavior: "smooth"
-                });
-            }, 500);
-        </script>
-    </head>
-    <body>
-        <div class="pagecontainer">
-            <div class="block-left">
-                <div class="settings-block">
-                    <div class="settings-block__profilelink">
-                        <a href="../../pages/settings/profile/profile.hbs">Профиль ❯</a>
-                    </div>
 
-                    <div class="settings-block__search">
-                        <input type="search" placeholder="Поиск" class="settings-block__search__input">
-                    </div>
+<head>
+    <link rel="stylesheet" type="text/css" href="./conversations.less">
+    <script type="module">
+        import scrollToLastMessage from "./conversations.ts"
+        scrollToLastMessage();
+    </script>
+</head>
+
+<body>
+    <div class="pagecontainer">
+        <div class="block-left">
+            <div class="settings-block">
+                <div class="settings-block__profilelink">
+                    <a href="../../pages/settings/profile/profile.hbs">Профиль ❯</a>
                 </div>
-                <div class="chatlist">
-                    {{#each conversations.chatlist}}
-                    <div class="chatlist-chatitem">
-                        <div class="chatlist-chatitem__logo">
-                            <img src="../../../static/chat_logo.png" height="60px" width="60px" alt="logo {{title}}">
-                        </div>
-                        
-                        <div class="chatlist-chatitem__textcontainer">
-                            <div class="chatlist-chatitem__title">
-                                {{title}}
-                            </div>
-                            <div class="chatlist-chatitem__message">
-                                {{message}}
-                            </div>
-                        </div>
 
-                        <div class="chatlist-chatitem__info">
-                            <div class="chatlist-chatitem___info__messagetime">
-                                {{time}}
-                            </div>
+                <div class="settings-block__search">
+                    <input type="search" placeholder="Поиск" class="settings-block__search__input">
+                </div>
+            </div>
+            <div class="chatlist">
+                {{#each conversations.chatlist}}
+                <div class="chatlist-chatitem">
+                    <div class="chatlist-chatitem__logo">
+                        <img src="../../../static/chat_logo.png" height="60px" width="60px" alt="logo {{title}}">
+                    </div>
+
+                    <div class="chatlist-chatitem__textcontainer">
+                        <div class="chatlist-chatitem__title">
+                            {{title}}
+                        </div>
+                        <div class="chatlist-chatitem__message">
+                            {{message}}
+                        </div>
+                    </div>
+
+                    <div class="chatlist-chatitem__info">
+                        <div class="chatlist-chatitem___info__messagetime">
+                            {{time}}
+                        </div>
 
                         {{#if hasNewMessages}}
-                            <div class="chatlist-chatitem___info__messagescount">
-                                {{messagecount}}
-                            </div>
+                        <div class="chatlist-chatitem___info__messagescount">
+                            {{messagecount}}
+                        </div>
                         {{/if}}
-                        </div>
-                        
                     </div>
-                    {{/each}}
+
                 </div>
-            </div>
-
-            <div class="block-right">
-                <div class="profile-info">
-                    <div class="profile-info__logo">
-                        <img src="../../../static/chat_logo.png" height="34px" width="34px" alt="logo {{title}}">
-                    </div>
-                    <div class="profile-info__chatname">
-                        Александр
-                    </div>
-                    <div class="profile-info__settings">
-                        &#x2807;
-                    </div>
-                </div>
-
-                <div class="messagelist">
-                    {{#each conversations.messagelist}}
-                    {{#if isMyMessage}}
-                        <div class="messagelist_right">
-                            {{messageText}}
-                        </div>
-                    {{else}}
-                        <div class="messagelist_left">
-                            {{messageText}}
-                        </div>                    
-                    {{/if}}
-                    
-
-                    {{/each}}
-                </div>
-
-                <form class="send-message-block">
-                    <input type="text" name="message" placeholder="Сообщение" class="send-message-block__input-addmessage">
-                    <input type="button" value="Отправить" class="send-message-block__button-addmessage">
-                </form>
+                {{/each}}
             </div>
         </div>
-    </body>
+
+        <div class="block-right">
+            <div class="profile-info">
+                <div class="profile-info__logo">
+                    <img src="../../../static/chat_logo.png" height="34px" width="34px" alt="logo {{title}}">
+                </div>
+                <div class="profile-info__chatname">
+                    Александр
+                </div>
+                <div class="profile-info__settings">
+                    &#x2807;
+                </div>
+            </div>
+
+            <div class="messagelist">
+                {{#each conversations.messagelist}}
+                {{#if isMyMessage}}
+                <div class="messagelist_right">
+                    {{messageText}}
+                </div>
+                {{else}}
+                <div class="messagelist_left">
+                    {{messageText}}
+                </div>
+                {{/if}}
+
+
+                {{/each}}
+            </div>
+
+            <form class="send-message-block">
+                <input type="text" name="message" placeholder="Сообщение" class="send-message-block__input-addmessage">
+                <input type="button" value="Отправить" class="send-message-block__button-addmessage">
+            </form>
+        </div>
+    </div>
+</body>
+
 </html>

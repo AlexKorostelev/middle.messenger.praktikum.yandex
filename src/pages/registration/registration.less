@@ -1,31 +1,31 @@
 @import "../../common/styles/styles.less";
 
 body {
-  margin: 0;
+  margin : 0;
   padding: 0;
 }
 
 .pagecontainer {
-  height: 100vh;
-  display: flex;
+  height         : 100vh;
+  display        : flex;
   justify-content: center;
-  align-items: center;
+  align-items    : center;
 
   .registration-form {
-    width: 280px;
-    height: 580px;
-    background: @menu-color;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width          : 280px;
+    height         : 580px;
+    background     : @menu-color;
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
     justify-content: space-between;
-    border: 1px solid #e2e2e2;
-    border-radius: 20px;
-    box-shadow: 2px 2px 3px @border-color;
+    border         : 1px solid #e2e2e2;
+    border-radius  : 20px;
+    box-shadow     : 2px 2px 3px @border-color;
 
     h2 {
       font-family: @baseFontFamily;
-      color: @color-dark-grey;
+      color      : @color-dark-grey;
     }
 
     form {
@@ -33,43 +33,43 @@ body {
     }
 
     .registration-form__input-block {
-      display: flex;
+      display       : flex;
       flex-direction: column;
-      width: 220px;
-      margin-bottom: 30px;
+      width         : 220px;
+      margin-bottom : 30px;
 
       .registration-form__input-block_input {
-        width: 100%;
-        height: @baseElementHeight;
-        border: none;
+        width        : 100%;
+        height       : @baseElementHeight;
+        border       : none;
         border-radius: 20px;
-        border: 1px solid #a8a8a8;
-        margin: 5px 0 10px 0;
-        padding: 0 10px;
+        border       : 1px solid #a8a8a8;
+        margin       : 5px 0 10px 0;
+        padding      : 0 10px;
       }
 
       label {
-        font-size: 13px;
+        font-size  : 13px;
         font-family: @baseFontFamily;
-        color: @color-secondary;
+        color      : @color-secondary;
       }
     }
 
     .registration-form__button-block {
-      display: flex;
+      display       : flex;
       flex-direction: column;
-      width: 220px;
-      margin-bottom: 20px;
+      width         : 220px;
+      margin-bottom : 20px;
 
       .registration-form__button-block__button {
         margin-bottom: 5px;
-        height: @baseElementHeight;
+        height       : @baseElementHeight;
         border-radius: 20px;
-        border: 1px solid @border-color;
+        border       : 1px solid @border-color;
 
         &:hover {
           background: #e4edfd;
-          cursor: pointer;
+          cursor    : pointer;
         }
       }
     }
