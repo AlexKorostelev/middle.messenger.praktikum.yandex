@@ -15,7 +15,7 @@
       "hasNewMessages": false
     },
     {
-      "title": "Чат о инвестициях",
+      "title": "Чат об инвестициях",
       "message": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita excepturi tenetur voluptas quis modi vel nobis possimus laboriosam nisi. Omnis?",
       "time": "12:45",
       "messagecount": "5",
@@ -24,21 +24,21 @@
     {
       "title": "Группа Друзья",
       "message": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita excepturi tenetur voluptas quis modi vel nobis possimus laboriosam nisi. Omnis?",
-      "time": "12:45",
+      "time": "13:25",
       "messagecount": "3",
       "hasNewMessages": false
     },
     {
       "title": "Группа Семья",
       "message": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita excepturi tenetur voluptas quis modi vel nobis possimus laboriosam nisi. Omnis?",
-      "time": "12:45",
+      "time": "13:51",
       "messagecount": "3",
       "hasNewMessages": true
     },
     {
       "title": "Чат о погоде",
       "message": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita excepturi tenetur voluptas quis modi vel nobis possimus laboriosam nisi. Omnis?",
-      "time": "12:45",
+      "time": "11:11",
       "messagecount": "3",
       "hasNewMessages": false
     }
