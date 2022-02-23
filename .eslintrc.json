@@ -7,6 +7,8 @@
     "project": "./tsconfig.json"
   },
   "rules": {
+    /** Максимальная ширина строки */
+    "max-len": [2, { "code": 180 }],
     /** Разрешается использовать "_" в названии объекта если это свойство стоит после this */
     "no-underscore-dangle": [2, { "allowAfterThis": true }],
     /** Warning если есть console.log */

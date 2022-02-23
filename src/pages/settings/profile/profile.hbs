@@ -1,50 +1,46 @@
 <html>
 
-<head>
-  <link rel="stylesheet" type="text/css" href="./profile.less">
-</head>
+  <head>
+    <link rel="stylesheet" type="text/css" href="./profile.less" />
+  </head>
 
-<body>
-  <div class="pagecontainer">
-    <div class="profile-settings">
-      <div class="profile-form">
-        <h2>Настройки</h2>
+  <body>
+    <div class="page-container">
+      <div class="profile-settings">
+        <div class="profile-form">
+          <h2 class="profile-form__title">Настройки</h2>
 
-        <form>
-          <div class="profile-form__input-block">
-            <label for="email">Почта:</label>
-            <input type="email" value="{{settings.profile.email}}" name="email" class="profile-form__input-block_input">
-            <label for="login">Логин:</label>
-            <input type="text" value="{{settings.profile.login}}" name="login" class="profile-form__input-block_input">
-            <label for="first_name">Имя:</label>
-            <input type="text" value="{{settings.profile.first_name}}" name="first_name"
-              class="profile-form__input-block_input">
-            <label for="second_name">Фамилия:</label>
-            <input type="text" value="{{settings.profile.second_name}}" name="second_name"
-              class="profile-form__input-block_input">
-            <label for="display_name">Никнэйм:</label>
-            <input type="text" value="{{settings.profile.display_name}}" name="display_name"
-              class="profile-form__input-block_input">
-            <label for="phone">Телефон:</label>
-            <input type="tel" value="{{settings.profile.phone}}" name="phone" class="profile-form__input-block_input">
-            <nav>
-              <a href="../password/password.hbs">Сменить пароль</a>
-            </nav>
-          </div>
+          <form class="profile-form__form">
+            <div class="input-block">
+              <label class="input-label" for="email">Почта:</label>
+              <input type="email" value="{{settings.profile.email}}" name="email" class="input-block__input" />
+              <label class="input-label" for="login">Логин:</label>
+              <input type="text" value="{{settings.profile.login}}" name="login" class="input-block__input" />
+              <label class="input-label" for="first_name">Имя:</label>
+              <input type="text" value="{{settings.profile.first_name}}" name="first_name" class="input-block__input" />
+              <label class="input-label" for="second_name">Фамилия:</label>
+              <input type="text" value="{{settings.profile.second_name}}" name="second_name" class="input-block__input" />
+              <label class="input-label" for="display_name">Никнэйм:</label>
+              <input type="text" value="{{settings.profile.display_name}}" name="display_name" class="input-block__input" />
+              <label class="input-label" for="phone">Телефон:</label>
+              <input type="tel" value="{{settings.profile.phone}}" name="phone" class="input-block__input" />
+              <nav class="nav-block">
+                <a class="nav-block__link" href="../password/password.hbs">Сменить пароль</a>
+              </nav>
+            </div>
 
-          <div class="profile-form__button-block">
-            <input type="button" value="Зарегистрироваться" class="profile-form__button-block__button">
-            <input type="button" value="Авторизоваться" class="profile-form__button-block__button">
-          </div>
+            <div class="button-block">
+              <input type="button" value="Зарегистрироваться" class="button-block__button" />
+              <input type="button" value="Авторизоваться" class="button-block__button" />
+            </div>
 
-        </form>
-      </div>
-      <div class="avatar">
-        <input type="image" name="avatar"
-          src="https://previews.123rf.com/images/denizjdazel/denizjdazel1902/denizjdazel190200045/124841367-.jpg?fj=1">
+          </form>
+        </div>
+        <div class="avatar">
+          <input type="image" name="avatar" src="https://previews.123rf.com/images/denizjdazel/denizjdazel1902/denizjdazel190200045/124841367-.jpg?fj=1" />
+        </div>
       </div>
     </div>
-  </div>
-</body>
+  </body>
 
 </html>

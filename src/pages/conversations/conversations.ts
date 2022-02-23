@@ -1,7 +1,7 @@
-function scrollToLastMessage() {
+(function scrollToLastMessage() {
   setTimeout(() => {
     // eslint-disable-next-line no-undef
-    const collection = document.getElementsByClassName('messagelist');
+    const collection = document.getElementsByClassName("messages-container");
     if (collection.length) {
       collection[0].scrollTo({
         top: collection[0].scrollHeight,
@@ -9,6 +9,4 @@ function scrollToLastMessage() {
       });
     }
   }, 500);
-}
-
-export default scrollToLastMessage;
+}());

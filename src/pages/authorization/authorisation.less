@@ -1,80 +1,73 @@
 @import "../../common/styles/styles.less";
 
 body {
-  margin : 0;
+  margin: 0;
   padding: 0;
 }
 
-.pagecontainer {
-  height         : 100vh;
-  display        : flex;
+.page-container {
+  height: 100vh;
+  display: flex;
   justify-content: center;
-  align-items    : center;
+  align-items: center;
 
   .authorisation-form {
-    width          : 280px;
-    height         : 380px;
-    background     : @menu-color;
-    display        : flex;
-    flex-direction : column;
-    align-items    : center;
+    width: 280px;
+    height: 380px;
+    background: @menu-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
-    border         : 1px solid #e2e2e2;
-    border-radius  : 20px;
-    box-shadow     : 2px 2px 3px @border-color;
+    border: 1px solid @border-color;
+    border-radius: 20px;
+    box-shadow: 2px 2px 3px @border-color;
 
-    h2 {
+    &__title {
       font-family: @baseFontFamily;
-      color      : @color-dark-grey;
+      color: @color-dark-grey;
     }
 
-    form {
+    &__form {
       margin: 0;
     }
+  }
 
-    .authorisation-form__input-block {
-      display       : flex;
-      flex-direction: column;
-      width         : 220px;
-      margin-bottom : 40px;
+  .input-block {
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    margin-bottom: 40px;
 
-      .authorisation-form__input-block_input {
-        width        : 100%;
-        height       : @baseElementHeight;
-        font-family  : @baseFontFamily;
-        color        : @color-dark-grey;
-        border       : none;
-        border-radius: 20px;
-        border       : 1px solid #a8a8a8;
-        margin       : 5px 0 10px 0;
-        padding      : 0 10px;
-      }
-
-      label {
-        font-size  : 13px;
-        font-family: @baseFontFamily;
-        color      : @color-secondary;
-      }
+    &__input {
+      width: 100%;
+      height: @baseElementHeight;
+      font-family: @baseFontFamily;
+      color: @color-dark-grey;
+      border-radius: 20px;
+      border: @input-border;
+      margin: 5px 0 10px 0;
+      padding: 0 10px;
     }
+  }
 
-    .authorisation-form__button-block {
-      display       : flex;
-      flex-direction: column;
-      width         : 220px;
-      margin-bottom : 20px;
+  .button-block {
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    margin-bottom: 20px;
 
-      .authorisation-form__button-block__button {
-        margin-bottom: 5px;
-        height       : @baseElementHeight;
-        font-family  : @baseFontFamily;
-        color        : @color-dark-grey;
-        border-radius: 20px;
-        border       : 1px solid @border-color;
+    .button-block__button {
+      margin-bottom: 5px;
+      height: @baseElementHeight;
+      font-family: @baseFontFamily;
+      color: @color-dark-grey;
+      border-radius: 20px;
+      border: 1px solid @border-color;
 
-        &:hover {
-          background: #e4edfd;
-          cursor    : pointer;
-        }
+      &:hover {
+        background: @button-hovered-color;
+        cursor: pointer;
       }
     }
   }
