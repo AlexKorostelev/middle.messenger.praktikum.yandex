@@ -1,7 +1,9 @@
-<html>
+<html lang="ru">
 
   <head>
     <link rel="stylesheet" type="text/css" href="./authorisation.less" />
+    <script defer src="index.ts" type="module"></script>
+    <title>Авторизация</title>
   </head>
 
   <body>
@@ -12,13 +14,13 @@
         <form class="authorisation-form__form">
           <div class="input-block">
             <label for="login" class="input-label">Логин:</label>
-            <input type="text" name="login" class="input-block__input" />
+            <input id="login" type="text" name="login" class="form-input input-normal" />
             <label for="password" class="input-label">Пароль:</label>
-            <input type="password" name="password" class="input-block__input" />
+            <input id="password" type="password" name="password" class="form-input input-normal" autocomplete="false" />
           </div>
 
           <div class="button-block">
-            <input type="button" value="Авторизоваться" class="button-block__button" />
+            <button id="auth-button" type="submit" class="button-block__button">Авторизоваться</button>
             <input type="button" value="Зарегистрироваться" class="button-block__button" />
           </div>
         </form>

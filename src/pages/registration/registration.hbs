@@ -1,7 +1,9 @@
-<html>
+<html lang="ru">
 
   <head>
     <link rel="stylesheet" type="text/css" href="./registration.less" />
+    <script defer src="index.ts" type="module"></script>
+    <title>Регистрация</title>
   </head>
 
   <body>
@@ -12,22 +14,21 @@
         <form class="registration-form__form">
           <div class="input-block">
             <label class="input-label" for="email">Почта:</label>
-            <input type="email" name="email" class="input-block__input" />
+            <input type="email" id="email" name="email" class="form-input input-normal" />
             <label class="input-label" for="login">Логин:</label>
-            <input type="text" name="login" class="input-block__input" />
+            <input type="text" id="login" name="login" class="form-input input-normal" />
             <label class="input-label" for="first_name">Имя:</label>
-            <input type="text" name="first_name" class="input-block__input" />
+            <input type="text" id="first_name" name="first_name" class="form-input input-normal" />
             <label class="input-label" for="second_name">Фамилия:</label>
-            <input type="text" name="second_name" class="input-block__input" />
+            <input type="text" id="second_name" name="second_name" class="form-input input-normal" />
             <label class="input-label" for="phone">Телефон:</label>
-            <input type="tel" name="phone" class="input-block__input" />
+            <input type="tel" id="phone" name="phone" class="form-input input-normal" />
             <label class="input-label" for="password">Пароль:</label>
-            <input type="password" name="password" class="input-block__input" />
+            <input type="password" id="password" name="password" class="form-input input-normal" autocomplete="false" />
           </div>
 
           <div class="button-block">
-            <input type="button" value="Зарегистрироваться" class="button-block__button" />
-            <input type="button" value="Авторизоваться" class="button-block__button" />
+            <button id="reg-button" type="submit" class="button-block__button">Зарегистрироваться</button>
           </div>
 
         </form>

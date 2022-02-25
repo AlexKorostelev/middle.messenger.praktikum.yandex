@@ -2,7 +2,7 @@
 
   <head>
     <link rel="stylesheet" type="text/css" href="./conversations.less" />
-    <script type="module" src="conversations.ts"></script>
+    <script type="module" src="index.ts" defer></script>
   </head>
 
   <body>
@@ -13,7 +13,7 @@
         </div>
 
         <div class="search-block">
-          <input type="search" placeholder="Поиск" class="search-block__input" />
+          <input type="search" placeholder="Поиск" class="form-input input-normal" />
         </div>
         <div class="chat-list">
           {{#each conversations.chatlist}}
@@ -76,8 +76,8 @@
         </div>
 
         <form class="send-message-block">
-          <input type="text" name="message" placeholder="Сообщение" class="send-message-block__input" />
-          <input type="button" value="Отправить" class="send-message-block__button" />
+          <input type="text" id="message" name="message" placeholder="Сообщение" class="form-input input-normal" />
+          <button id="send-button" type="submit" class="send-message-block__button">Отправить</button>
         </form>
       </div>
     </div>

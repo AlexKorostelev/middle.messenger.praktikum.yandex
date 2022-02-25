@@ -1,4 +1,13 @@
 {
   "semi": true,
-  "printWidth": 180
+  "printWidth": 180,
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": ["*.html", "*.hbs"],
+      "options": {
+        "singleQuote": false
+      }
+    }
+  ]
 }
