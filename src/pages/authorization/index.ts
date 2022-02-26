@@ -10,4 +10,4 @@ formValidation.addValidateInput('password', REGEXP_PASSWORD);
 formValidation.setValidationInputsEventTypes('focus', 'blur');
 /** Добавляем кнопку и обработчик клика (вторым параметром) */
 // eslint-disable-next-line no-console
-formValidation.addSubmitButton('save-button');
+formValidation.addSubmitButton('auth-button');
