@@ -10,6 +10,10 @@ class Block {
     FLOW_RENDER: 'flow:render',
   };
 
+  static get ComponentName() {
+    return 'Button';
+  }
+
   public id = nanoid(6);
 
   private _element: HTMLElement | null = null;
@@ -179,16 +183,16 @@ class Block {
   compile(template: (context: any) => string, context: any) {
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
 
-    Object.entries(this.children).forEach(([key, child]) => {
-      if (Array.isArray(child)) {
-        context[key] = child.map(() => `<div data-id="id-${child.id}"></div>`);
+    // Object.entries(this.children).forEach(([key, child]) => {
+    //   if (Array.isArray(child)) {
+    //     context[key] = child.map(() => `<div data-id="id-${child.id}"></div>`);
+    //
+    //     return;
+    //   }
+    //   context[key] = `<div data-id="id-${child.id}"></div>`;
+    // });
 
-        return;
-      }
-      context[key] = `<div data-id="id-${child.id}"></div>`;
-    });
-
-    const htmlString = template(context);
+    const htmlString = template({ ...context, children: this.children });
 
     fragment.innerHTML = htmlString;
     Object.entries(this.children).forEach(([, child]) => {
