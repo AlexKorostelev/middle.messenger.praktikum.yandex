@@ -1,21 +1,30 @@
-import template from './button.hbs';
+// import template from './button.hbs';
 import Block from '../../common/Block';
+import '../../common/styles/styles.less';
 
 interface IButtonProps {
   label: string;
-  events?: {
-    click?: () => void;
-  };
+  buttonId: string;
+  onClick: () => void;
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export class Button extends Block {
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
-  constructor(props: IButtonProps) {
-    super(props);
+  constructor({ label, buttonId, onClick }: IButtonProps) {
+    super({
+      label,
+      buttonId,
+      events: {
+        click: onClick,
+      },
+    });
   }
 
   render() {
-    return this.compile(template, { ...this.props });
+    // language=hbs
+    return `
+      <button id={{buttonId}} class='formButton' type="button">
+        {{label}}
+      </button>
+    `;
   }
 }

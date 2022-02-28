@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
+import Handlebars from 'handlebars';
 import EventBus from './EventBus';
 
-/* eslint-disable prefer-destructuring,no-param-reassign,class-methods-use-this */
 class Block {
   static EVENTS = {
     INIT: 'init',
@@ -10,9 +10,9 @@ class Block {
     FLOW_RENDER: 'flow:render',
   };
 
-  static get ComponentName() {
-    return 'Button';
-  }
+  // static get ComponentName() {
+  //   return 'Button';
+  // }
 
   public id = nanoid(6);
 
@@ -47,8 +47,7 @@ class Block {
     const children: any = {};
     const props: any = {};
 
-    // eslint-disable-next-line array-callback-return
-    Object.entries(propsAndChildren).map(([key, value]) => {
+    Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
         children[key] = value;
       } else if (Array.isArray(value) && value.every((v) => v instanceof Block)) {
@@ -108,7 +107,8 @@ class Block {
   }
 
   _render() {
-    const fragment = this.render();
+    const templateString = this.render();
+    const fragment = this.compile(templateString, { ...this.props });
     const newElement = fragment.firstElementChild as HTMLElement;
 
     if (this._element) {
@@ -119,8 +119,8 @@ class Block {
     this._addEvents();
   }
 
-  protected render() {
-    return new DocumentFragment();
+  protected render(): string {
+    return '';
   }
 
   getContent(): HTMLElement | null {
@@ -155,23 +155,23 @@ class Block {
   }
 
   _addEvents() {
-    const events: Record<string, () => void> = (this.props as any).events;
+    const { events } = this.props as any;
 
     if (!events) {
       return;
     }
-    Object.entries(events).forEach(([event, listener]) => {
+    Object.entries(events as Record<string, () => void>).forEach(([event, listener]) => {
       this._element!.addEventListener(event, listener);
     });
   }
 
   _removeEvents() {
-    const events: Record<string, () => void> = (this.props as any).events;
+    const { events } = this.props as any;
 
     if (!events || !this._element) {
       return;
     }
-    Object.entries(events).forEach(([event, listener]) => {
+    Object.entries(events as Record<string, () => void>).forEach(([event, listener]) => {
       this._element!.removeEventListener(event, listener);
     });
   }
@@ -180,21 +180,11 @@ class Block {
     return document.createElement(tagName);
   }
 
-  compile(template: (context: any) => string, context: any) {
+  compile(templateString: string, context: any) {
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
+    const template = Handlebars.compile(templateString);
 
-    // Object.entries(this.children).forEach(([key, child]) => {
-    //   if (Array.isArray(child)) {
-    //     context[key] = child.map(() => `<div data-id="id-${child.id}"></div>`);
-    //
-    //     return;
-    //   }
-    //   context[key] = `<div data-id="id-${child.id}"></div>`;
-    // });
-
-    const htmlString = template({ ...context, children: this.children });
-
-    fragment.innerHTML = htmlString;
+    fragment.innerHTML = template({ ...context, children: this.children });
     Object.entries(this.children).forEach(([, child]) => {
       const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);
 

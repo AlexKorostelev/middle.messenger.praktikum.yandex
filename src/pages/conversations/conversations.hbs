@@ -9,14 +9,14 @@
     <div class="page-container">
       <div class="block-left">
         <div class="link-container">
-          <a class="link-container__link" href="../../pages/settings/profile/profile.hbs">Профиль ❯</a>
+          <a class="link-container__link" href="../profile/profile.hbs">Профиль ❯</a>
         </div>
 
         <div class="search-block">
           <input type="search" placeholder="Поиск" class="form-input input-normal" />
         </div>
         <div class="chat-list">
-          {{#each conversations.chatlist}}
+            {{#each conversations.chatlist}}
             <div class="chat-item">
               <div class="chat-logo-block">
                 <img class="chat-logo-block__img" src="../../../static/chat_logo.png" height="60px" width="60px" alt="logo {{title}}" />

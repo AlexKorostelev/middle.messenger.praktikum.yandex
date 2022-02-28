@@ -1,4 +1,4 @@
-@import "../../common/styles/styles.less";
+@import '../../common/styles/styles.less';
 
 @chat-list-width: 400px; //Ширина блока списка чатов
 @chat-logo-width: 80px; //Ширина картинки
@@ -204,18 +204,8 @@ body {
     padding: 0 100px;
     margin: 0;
 
-    &__button {
-      padding: 0 10px;
-      height: @baseElementHeight;
+    .button-container {
       margin-left: 10px;
-      border-radius: 20px;
-      border: 1px solid @border-color;
-      font-family: @baseFontFamily;
-
-      &:hover {
-        background: #e4edfd;
-        cursor: pointer;
-      }
     }
   }
 

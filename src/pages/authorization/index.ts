@@ -1,13 +1,14 @@
-import { CFormValidation } from '../../common/utils';
-import { REGEXP_LOGIN, REGEXP_PASSWORD } from '../../common/const';
+import { registerComponent } from '../../common/registerComponent';
+import Label from '../../components/Label';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
+import { AuthorisationPage } from './authorisation';
+import { renderDom } from '../../common/renderDom';
 
-const formValidation = new CFormValidation();
+registerComponent(Button);
+registerComponent(Label);
+registerComponent(Input);
 
-formValidation.addValidateInput('login', REGEXP_LOGIN);
-formValidation.addValidateInput('password', REGEXP_PASSWORD);
+const authPage = new AuthorisationPage();
 
-/** Добавляем валидацию всех инпутов по событиям focus, blur */
-formValidation.setValidationInputsEventTypes('focus', 'blur');
-/** Добавляем кнопку и обработчик клика (вторым параметром) */
-// eslint-disable-next-line no-console
-formValidation.addSubmitButton('auth-button');
+renderDom('#app', authPage);

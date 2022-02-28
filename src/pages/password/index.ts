@@ -1,14 +1,14 @@
 import { registerComponent } from '../../common/registerComponent';
-import Label from '../../components/Label';
 import Input from '../../components/Input';
+import Label from '../../components/Label';
 import Button from '../../components/Button';
-import { RegistrationPage } from './registration';
 import { renderDom } from '../../common/renderDom';
+import { PasswordPage } from './password';
 
 registerComponent(Button);
 registerComponent(Label);
 registerComponent(Input);
 
-const registrationPage = new RegistrationPage();
+const passwordPage = new PasswordPage();
 
-renderDom('#app', registrationPage);
+renderDom('#app', passwordPage);

@@ -18,8 +18,8 @@ export const REGEXP_NAME = /^[A-ZА-ЯЁ][a-zA-Zа-яА-ЯёЁ]+$/;
 /** phone: от 10 до 15 символов, состоит из цифр, может начинается с плюса */
 export const REGEXP_PHONE = /^\+?\d{10,15}$/;
 
-/** display_name */
-export const REGEXP_NICKNAME = /^.{3,20}$/;
+/** display_name: минимум 3 непробельных символа */
+export const REGEXP_NICKNAME = /^.*\S.*$/;
 
 /** message: не может состоять только из пробелов */
 export const REGEXP_MESSAGE = /^.*\S.*$/;

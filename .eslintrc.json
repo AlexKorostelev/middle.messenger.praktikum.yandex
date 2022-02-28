@@ -13,6 +13,12 @@
     /** Обязательная пустая строка между return и предыдущим кодом */
     "padding-line-between-statements": [2, { "blankLine": "always", "prev": "*", "next": "return" }],
     /** Отключить предупреждение CRLF (для работы в win)*/
-    "linebreak-style": 0
+    "linebreak-style": 0,
+    /** Отключить "Не использовать экспорт по дефолту "*/
+    "import/prefer-default-export": "off",
+    "class-methods-use-this": "off",
+    "no-restricted-exports": "off",
+    "no-param-reassign": "off",
+    "import/no-absolute-path": "off"
   }
 }

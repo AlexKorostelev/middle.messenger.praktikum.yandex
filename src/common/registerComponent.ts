@@ -1,11 +1,11 @@
-import { HelperOptions } from 'handlebars';
-// @ts-ignore
-import Handlebars from 'handlebars/dist/handlebars.runtime';
+import Handlebars, { HelperOptions } from 'handlebars';
 import Block from './Block';
 
+// eslint-disable-next-line import/prefer-default-export
 export function registerComponent(Component: typeof Block) {
-  Handlebars.registerHelper(Component.ComponentName, function ({ hash, data }: HelperOptions) {
+  Handlebars.registerHelper(Component.name, ({ hash, data }: HelperOptions) => {
     if (!data.root.children) {
+      // eslint-disable-next-line no-param-reassign
       data.root.children = {};
     }
     const { children } = data.root;

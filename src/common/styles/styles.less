@@ -37,6 +37,7 @@
   margin: 5px 0 10px 0;
   padding: 0 10px;
   outline: none;
+  border: @input-border;
 }
 
 .input-error {
@@ -45,4 +46,18 @@
 
 .input-normal {
   border: @input-border;
+}
+
+.formButton {
+  margin-bottom: 5px;
+  height: @baseElementHeight;
+  font-family: @baseFontFamily;
+  color: @color-dark-grey;
+  border-radius: 20px;
+  border: 1px solid @border-color;
+
+  &:hover {
+    background: @button-hovered-color;
+    cursor: pointer;
+  }
 }
