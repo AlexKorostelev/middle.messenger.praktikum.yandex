@@ -1,14 +1,13 @@
 # Веб-приложение для обмена сообщениями.
-### Ссылка на ПР: [https://github.com/AlexKorostelev/middle.messenger.praktikum.yandex/pull/1](https://github.com/AlexKorostelev/middle.messenger.praktikum.yandex/pull/1 "Ссылка на ПР")
+### Ссылка на ПР: [https://github.com/AlexKorostelev/middle.messenger.praktikum.yandex/pull/2](https://github.com/AlexKorostelev/middle.messenger.praktikum.yandex/pull/2 "Ссылка на ПР")
 ### Ссылка на главную страницу: [https://alex-korostelev-messenger.netlify.app/index.html](https://alex-korostelev-messenger.netlify.app/index.html "Ссылка на страничку приложения")
 ### URL адреса страниц:
-* [Список чатов](https://alex-korostelev-messenger.netlify.app/pages/conversations/conversations.html "Ссылка на страничку списка чатов")
-* [Авторизация](https://alex-korostelev-messenger.netlify.app/pages/authorization/authorisation.html "Ссылка на страничку авторизации")
-* [Регистрация](https://alex-korostelev-messenger.netlify.app/pages/registration/registration.html "Ссылка на страничку регистрации")
-* [Настройки профиля](https://alex-korostelev-messenger.netlify.app/pages/settings/profile/profile.html "Ссылка на страничку настроек профиля")
-* [Настройки профиля (смена пароля)](https://alex-korostelev-messenger.netlify.app/pages/settings/password/password.html "Ссылка на страничку смена пароля")
-* [Страничка 404](https://alex-korostelev-messenger.netlify.app/pages/errors/error404.html "Ссылка на страничку 404")
-* [Страничка 5xx](https://alex-korostelev-messenger.netlify.app/pages/errors/error5xx.html "Ссылка на страничку 5xx")
+* [Список чатов](https://alex-korostelev-messenger.netlify.app/pages/messages/index.html "Ссылка на страничку списка чатов")
+* [Авторизация](https://alex-korostelev-messenger.netlify.app/pages/authorization/index.html "Ссылка на страничку авторизации")
+* [Регистрация](https://alex-korostelev-messenger.netlify.app/pages/registration/index.html "Ссылка на страничку регистрации")
+* [Настройки профиля](https://alex-korostelev-messenger.netlify.app/pages/profile/index.html "Ссылка на страничку настроек профиля")
+* [Настройки профиля (смена пароля)](https://alex-korostelev-messenger.netlify.app/pages/password/index.html "Ссылка на страничку смена пароля")
+* [Страничка ошибки](https://alex-korostelev-messenger.netlify.app/pages/error/index.html "Ссылка на страничку ошибки")
 ### В качестве дизайн-макета использовались [шаблоны от Яндекс](https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1 "Ссылка на макеты Figma") и веб-приложение Телеграмм.
 ### Используемые технологии:
 * Шаблонизатор handlebars
