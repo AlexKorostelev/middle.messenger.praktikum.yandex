@@ -10,17 +10,13 @@ class Block {
     FLOW_RENDER: 'flow:render',
   };
 
-  // static get ComponentName() {
-  //   return 'Button';
-  // }
-
   public id = nanoid(6);
 
   private _element: HTMLElement | null = null;
 
-  private _meta: { props: any };
+  private _meta: { props: Record<string, string> };
 
-  protected props: any;
+  protected props: Record<string, string>;
 
   protected children: Record<string, Block>;
 

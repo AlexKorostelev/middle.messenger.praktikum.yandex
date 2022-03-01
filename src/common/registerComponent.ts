@@ -1,11 +1,9 @@
 import Handlebars, { HelperOptions } from 'handlebars';
 import Block from './Block';
 
-// eslint-disable-next-line import/prefer-default-export
-export function registerComponent(Component: typeof Block) {
-  Handlebars.registerHelper(Component.name, ({ hash, data }: HelperOptions) => {
+export function registerComponent(Component: typeof Block, componentName: string) {
+  Handlebars.registerHelper(componentName, ({ hash, data }: HelperOptions) => {
     if (!data.root.children) {
-      // eslint-disable-next-line no-param-reassign
       data.root.children = {};
     }
     const { children } = data.root;

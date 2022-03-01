@@ -21,7 +21,7 @@ export class ErrorForm extends Block {
             <div class="error-container">
                 <img class="error-container__image" src="https://auho.ru/sites/default/files/3_745.jpg" alt="error-picture" />
                 <p class="error-text">
-                    Ошибка {{errorNumber}}. Уже чиним! ;)
+                    Ошибка <b>{{errorNumber}}</b>. Уже чиним! ;)
                 </p>
                 <nav>
                     <a href="../../index.html">На главную</a>

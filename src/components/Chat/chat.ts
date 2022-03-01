@@ -1,25 +1,28 @@
 // import template from './button.hbs';
 import Block from '../../common/Block';
-import '../../pages/conversations/conversations.less';
+import '../../pages/messages/messages.less';
 
 export interface IChatProps {
   title: string;
   message: string;
   time: string;
-  messageCount: string;
+  newMessages: string;
   icon: string;
 }
 
 export class Chat extends Block {
-  constructor({ title, message, time, messageCount, icon }: IChatProps) {
+  constructor({
+    title, message, time, newMessages, icon,
+  }: IChatProps) {
     super({
       title,
       message,
       time,
-      messageCount,
+      newMessages,
       icon,
       events: {
-        click: () => console.log('click!'),
+        // eslint-disable-next-line no-console
+        click: () => console.log('Select chat'),
       },
     });
   }
@@ -47,7 +50,7 @@ export class Chat extends Block {
                 </div>
 
                 <div class="chat-item-info__messages-count">
-                    {{messagecount}}
+                    {{newMessages}}
                 </div>
             </div>
         </div>

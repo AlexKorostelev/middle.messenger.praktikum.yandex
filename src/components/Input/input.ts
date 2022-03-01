@@ -3,9 +3,13 @@ import Block from '../../common/Block';
 import '../../common/styles/styles.less';
 import { validateInput } from '../../common/utils';
 
+export type TInputType = 'email' | 'text' | 'tel' | 'password';
+
 interface IInputProps {
   inputId: string;
-  inputType: 'email' | 'text' | 'tel' | 'password';
+  inputValue?: string;
+  inputPlaceholder?: string;
+  inputType: TInputType;
   inputName: string;
   className?: string;
   regexp: string;
@@ -13,10 +17,12 @@ interface IInputProps {
 
 export class Input extends Block {
   constructor({
-    inputId, inputType, inputName, className, regexp,
+    inputId, inputValue, inputPlaceholder, inputType, inputName, className, regexp,
   }: IInputProps) {
     super({
       inputId,
+      inputValue,
+      inputPlaceholder,
       inputType,
       inputName,
       className,
@@ -30,6 +36,13 @@ export class Input extends Block {
 
   render() {
     // language=hbs
-    return '<input id={{inputId}} type={{inputType}} name={{inputName}} class="form-input" autocomplete="false"/>';
+    return `
+      <input id={{inputId}}
+             ${this.props.inputValue !== undefined && 'value={{inputValue}}'}
+             ${this.props.inputPlaceholder !== undefined && 'placeholder={{inputPlaceholder}}'}
+             type={{inputType}} name={{inputName}}
+             class="form-input"
+             autocomplete="false"/>
+    `;
   }
 }

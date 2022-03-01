@@ -5,9 +5,20 @@ import {
 } from '../../common/const';
 import Block from '../../common/Block';
 
+interface IProfileProps {
+  email: string;
+  login: string;
+  firstName: string;
+  secondName: string;
+  displayName: string;
+  phone: string;
+  imagePath: string;
+}
+
 export class ProfilePage extends Block {
-  constructor() {
+  constructor(props: IProfileProps) {
     super({
+      ...props,
       onClick: (event: Event) => {
         if ((event.target as HTMLButtonElement).id === 'button-save') {
           this.validate();
@@ -28,6 +39,10 @@ export class ProfilePage extends Block {
   }
 
   render() {
+    const {
+      email, login, firstName, secondName, displayName, phone, imagePath,
+    } = this.props;
+
     // language=hbs
     return `
         <div class="page-container">
@@ -37,23 +52,25 @@ export class ProfilePage extends Block {
 
                     <form class="profile-form__form">
                         <div class="input-block">
+
                             {{{ Label inputName="email" labelText="Почта:" }}}
-                            {{{ Input inputId="email" inputType="email" inputName="email" regexp="^[a-zA-Z0-9_-]+@[a-zA-Z]+.[a-zA-Z]+$" }}}
+                            {{{ Input inputId="email" inputValue="${email}" inputType="email" inputName="email" regexp="^[a-zA-Z0-9_-]+@[a-zA-Z]+.[a-zA-Z]+$" }}}
 
                             {{{ Label inputName="login" labelText="Логин:" }}}
-                            {{{ Input inputId="login" inputType="text" inputName="login" regexp="^(?=.{3,20}$)([a-zA-Z0-9_-]*[a-zA-Z_-][a-zA-Z0-9_-]*)$" }}}
+                            {{{ Input inputId="login" inputValue="${login}" inputType="text" inputName="login" regexp="^(?=.{3,20}$)([a-zA-Z0-9_-]*[a-zA-Z_-][a-zA-Z0-9_-]*)$" }}}
 
                             {{{ Label inputName="first_name" labelText="Имя:" }}}
-                            {{{ Input inputId="first_name" inputType="text" inputName="first_name" regexp="^[A-ZА-ЯЁ][a-zA-Zа-яА-ЯёЁ]+$" }}}
+                            {{{ Input inputId="first_name" inputValue="${firstName}" inputType="text" inputName="first_name" regexp="^[A-ZА-ЯЁ][a-zA-Zа-яА-ЯёЁ]+$" }}}
 
                             {{{ Label inputName="second_name" labelText="Фамилия:" }}}
-                            {{{ Input inputId="second_name" inputType="text" inputName="second_name" regexp="^[A-ZА-ЯЁ][a-zA-Zа-яА-ЯёЁ]+$" }}}
+                            {{{ Input inputId="second_name" inputValue="${secondName}" inputType="text" inputName="second_name" regexp="^[A-ZА-ЯЁ][a-zA-Zа-яА-ЯёЁ]+$" }}}
 
                             {{{ Label inputName="display_name" labelText="Никнэйм:" }}}
-                            {{{ Input inputId="display_name" inputType="text" inputName="display_name" regexp="^[A-ZА-ЯЁ][a-zA-Zа-яА-ЯёЁ]+$" }}}
+                            {{{ Input inputId="display_name" inputValue="${displayName}" inputType="text" inputName="display_name" regexp="^[A-ZА-ЯЁ][a-zA-Zа-яА-ЯёЁ]+$" }}}
 
                             {{{ Label inputName="phone" labelText="Телефон:" }}}
-                            {{{ Input inputId="phone" inputType="tel" inputName="phone" regexp="^\\+?\\d{10,15}$" }}}
+                            {{{ Input inputId="phone" inputValue="${phone}" inputType="tel" inputName="phone" regexp="^\\+?\\d{10,15}$" }}}
+
 
                             <nav class="nav-block">
                                 <a class="nav-block__link" href="../password/index.html">Сменить пароль</a>
@@ -68,7 +85,7 @@ export class ProfilePage extends Block {
                     </form>
                 </div>
                 <div class="avatar">
-                    <input type="image" name="avatar" src="https://previews.123rf.com/images/denizjdazel/denizjdazel1902/denizjdazel190200045/124841367-.jpg?fj=1" alt="avatar" />
+                    <input type="image" name="avatar" src="${imagePath}" alt="avatar" />
                 </div>
             </div>
         </div>

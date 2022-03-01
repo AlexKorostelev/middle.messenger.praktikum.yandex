@@ -26,6 +26,10 @@ export class AuthorisationPage extends Block {
               {{{ Input inputId="login" inputType="text" inputName="login" regexp="^(?=.{3,20}$)([a-zA-Z0-9_-]*[a-zA-Z_-][a-zA-Z0-9_-]*)$" }}}
               {{{ Label inputName="password" labelText="Пароль:" }}}
               {{{ Input inputId="password" inputType="password" inputName="password" regexp="^(?=.*?[A-ZА-ЯЁ])(?=.*?[0-9]).{8,40}$" }}}
+
+              <nav class="nav-block">
+                <a class="nav-block__link" href="../registration/index.html">Регистрация</a>
+              </nav>
             </div>
             <div class="button-block">
               {{{ Button buttonId="button-auth" label="Авторизация" onClick=onClick }}}

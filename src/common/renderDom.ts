@@ -1,6 +1,5 @@
 import Block from './Block';
 
-// eslint-disable-next-line import/prefer-default-export
 export function renderDom(rootSelector: string, component: Block) {
   const root = document.querySelector(rootSelector);
 

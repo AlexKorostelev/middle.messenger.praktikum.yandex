@@ -5,9 +5,9 @@ import Button from '../../components/Button';
 import { renderDom } from '../../common/renderDom';
 import { PasswordPage } from './password';
 
-registerComponent(Button);
-registerComponent(Label);
-registerComponent(Input);
+registerComponent(Button, 'Button');
+registerComponent(Label, 'Label');
+registerComponent(Input, 'Input');
 
 const passwordPage = new PasswordPage();
 

@@ -1,17 +1,17 @@
 import { registerComponent } from '../../common/registerComponent';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import { ConversationsPage } from './conversations';
+import { MessagesPage } from './messages';
 import { renderDom } from '../../common/renderDom';
 import Chat from '../../components/Chat';
 import Message from '../../components/Message';
 
-registerComponent(Button);
-registerComponent(Input);
-registerComponent(Chat);
-registerComponent(Message);
+registerComponent(Button, 'Button');
+registerComponent(Input, 'Input');
+registerComponent(Chat, 'Chat');
+registerComponent(Message, 'Message');
 
-const conversationsPage = new ConversationsPage({
+const messagesPage = new MessagesPage({
   messageList: [
     {
       isMyMessage: true,
@@ -79,45 +79,55 @@ const conversationsPage = new ConversationsPage({
       title: 'Чат о погоде',
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita excepturi tenetur voluptas quis modi vel nobis possimus laboriosam nisi. Omnis?',
       time: '12:45',
-      messageCount: '3',
+      newMessages: '7',
       icon: 'https://help.alueducation.com/system/photos/360113168439/images.png',
     },
     {
       title: 'Чат о настроении',
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita excepturi tenetur voluptas quis modi vel nobis possimus laboriosam nisi. Omnis?',
       time: '12:45',
-      messageCount: '3',
+      newMessages: '5',
       icon: 'https://help.alueducation.com/system/photos/360113168439/images.png',
     },
     {
       title: 'Чат об инвестициях',
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita excepturi tenetur voluptas quis modi vel nobis possimus laboriosam nisi. Omnis?',
       time: '12:45',
-      messageCount: '5',
+      newMessages: '',
       icon: 'https://help.alueducation.com/system/photos/360113168439/images.png',
     },
     {
       title: 'Группа Друзья',
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita excepturi tenetur voluptas quis modi vel nobis possimus laboriosam nisi. Omnis?',
       time: '13:25',
-      messageCount: '3',
+      newMessages: '',
       icon: 'https://help.alueducation.com/system/photos/360113168439/images.png',
     },
     {
       title: 'Группа Семья',
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita excepturi tenetur voluptas quis modi vel nobis possimus laboriosam nisi. Omnis?',
       time: '13:51',
-      messageCount: '3',
+      newMessages: '2',
       icon: 'https://help.alueducation.com/system/photos/360113168439/images.png',
     },
     {
       title: 'Чат о погоде',
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita excepturi tenetur voluptas quis modi vel nobis possimus laboriosam nisi. Omnis?',
       time: '11:11',
-      messageCount: '3',
+      newMessages: '',
       icon: 'https://help.alueducation.com/system/photos/360113168439/images.png',
     },
   ],
 });
 
-renderDom('#app', conversationsPage);
+renderDom('#app', messagesPage);
+
+setTimeout(() => {
+  const collection = document.getElementsByClassName('messages-container');
+  if (collection.length) {
+    collection[0].scrollTo({
+      top: collection[0].scrollHeight,
+      behavior: 'smooth',
+    });
+  }
+}, 500);

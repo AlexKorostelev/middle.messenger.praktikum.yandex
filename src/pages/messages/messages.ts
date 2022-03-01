@@ -1,5 +1,5 @@
 import Block from '../../common/Block';
-import './conversations.less';
+import './messages.less';
 import { validateInputs } from '../../common/utils';
 import { REGEXP_MESSAGE } from '../../common/const';
 import { IChatProps } from '../../components/Chat/chat';
@@ -10,7 +10,7 @@ interface IChatListProps {
   messageList: IMessageProps[];
 }
 
-export class ConversationsPage extends Block {
+export class MessagesPage extends Block {
   constructor({ chatList, messageList }: IChatListProps) {
     super({
       chatList,
@@ -35,7 +35,7 @@ export class ConversationsPage extends Block {
         title="${chat.title}"
         message="${chat.message}"
         time="${chat.time}"
-        messageCount="${chat.messageCount}"
+        newMessages="${chat.newMessages}"
         icon="${chat.icon}"
       }}}`,
       )
@@ -48,7 +48,7 @@ export class ConversationsPage extends Block {
         <div class="page-container">
             <div class="block-left">
                 <div class="link-container">
-                    <a class="link-container__link" href="../../pages/settings/profile/index.html">Профиль ❯</a>
+                    <a class="link-container__link" href="../../pages/profile/index.html">Профиль ❯</a>
                 </div>
 
                 <div class="search-block">
@@ -77,7 +77,7 @@ export class ConversationsPage extends Block {
                 </div>
 
                 <form class="send-message-block">
-                    {{{ Input inputId="message" inputType="text" inputName="message" regexp="^.*\\S.*$" }}}
+                    {{{ Input inputId="message" inputPlaceholder="Сообщение" inputType="text" inputName="message" regexp="^.*\\S.*$" }}}
                     <div class="button-container">
                         {{{ Button buttonId="button-send" label="Отправить" onClick=onClick }}}
                     </div>

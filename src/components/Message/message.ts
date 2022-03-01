@@ -1,5 +1,5 @@
 import Block from '../../common/Block';
-import '../../pages/conversations/conversations.less';
+import '../../pages/messages/messages.less';
 
 export interface IMessageProps {
   isMyMessage: boolean;

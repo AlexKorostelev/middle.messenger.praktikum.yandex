@@ -5,9 +5,9 @@ import Button from '../../components/Button';
 import { AuthorisationPage } from './authorisation';
 import { renderDom } from '../../common/renderDom';
 
-registerComponent(Button);
-registerComponent(Label);
-registerComponent(Input);
+registerComponent(Button, 'Button');
+registerComponent(Label, 'Label');
+registerComponent(Input, 'Input');
 
 const authPage = new AuthorisationPage();
 

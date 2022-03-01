@@ -80,7 +80,7 @@ interface IInputsValidationResults {
  * @param elementId - id инпута
  * @param regexp - регулярное выражение для проверки значения инпута
  * */
-export const validateInput = (elementId: string, regexp: RegExp): IInputsValidationResults => {
+export const validateInput = (elementId: string, regexp: RegExp | string): IInputsValidationResults => {
   const input = document.getElementById(elementId) as HTMLInputElement;
   const reg = new RegExp(regexp);
   const validationOK = reg.test(input.value);
