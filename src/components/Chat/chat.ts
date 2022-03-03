@@ -10,16 +10,16 @@ export interface IChatProps {
   icon: string;
 }
 
-export class Chat extends Block {
-  constructor({
-    title, message, time, newMessages, icon,
-  }: IChatProps) {
+interface IChat extends IChatProps {
+  events: {
+    click: Function,
+  },
+}
+
+export class Chat extends Block<IChat> {
+  constructor(props: IChatProps) {
     super({
-      title,
-      message,
-      time,
-      newMessages,
-      icon,
+      ...props,
       events: {
         // eslint-disable-next-line no-console
         click: () => console.log('Select chat'),

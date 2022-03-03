@@ -1,13 +1,13 @@
 import { registerComponent } from '../../common/registerComponent';
-import Label from '../../components/Label';
-import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { AuthorisationPage } from './authorisation';
 import { renderDom } from '../../common/renderDom';
+import InputField from '../../components/InputField';
+import Input from '../../components/Input';
 
 registerComponent(Button, 'Button');
-registerComponent(Label, 'Label');
 registerComponent(Input, 'Input');
+registerComponent(InputField, 'InputField');
 
 const authPage = new AuthorisationPage();
 

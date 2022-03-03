@@ -1,4 +1,4 @@
-enum METHODS {
+enum Methods {
   GET = 'GET',
   POST = 'POST',
   PUT = 'PUT',
@@ -17,27 +17,27 @@ function queryStringify(data: XMLHttpRequestBodyInit) {
 }
 
 interface IOptions {
-  method?: METHODS.GET | METHODS.PUT | METHODS.POST | METHODS.DELETE;
+  method?: Methods;
   timeout?: number;
   headers?: Record<string, string>;
   data?: XMLHttpRequestBodyInit;
 }
 
 export class HTTPTransport {
-  get = (url: string, options: IOptions = {}) => this.request(url, { ...options, method: METHODS.GET }, options.timeout);
+  get = (url: string, options: IOptions = {}) => this.request(url, { ...options, method: Methods.GET }, options.timeout);
 
-  post = (url: string, options: IOptions = {}) => this.request(url, { ...options, method: METHODS.POST }, options.timeout);
+  post = (url: string, options: IOptions = {}) => this.request(url, { ...options, method: Methods.POST }, options.timeout);
 
-  put = (url: string, options: IOptions = {}) => this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
+  put = (url: string, options: IOptions = {}) => this.request(url, { ...options, method: Methods.PUT }, options.timeout);
 
-  delete = (url: string, options: IOptions = {}) => this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
+  delete = (url: string, options: IOptions = {}) => this.request(url, { ...options, method: Methods.DELETE }, options.timeout);
 
-  request = (url: string, options: IOptions = { method: METHODS.GET }, timeout = 5000) => {
+  request = (url: string, options: IOptions = { method: Methods.GET }, timeout = 5000) => {
     const { headers = {}, method, data } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      xhr.open(method as string, method === METHODS.GET && !!data ? url + queryStringify(data) : url);
+      xhr.open(method as string, method === Methods.GET && !!data ? url + queryStringify(data) : url);
 
       Object.keys(headers).forEach((key) => {
         xhr.setRequestHeader(key, headers[key]);
@@ -52,7 +52,7 @@ export class HTTPTransport {
       xhr.ontimeout = reject;
       xhr.timeout = timeout;
 
-      if (method === METHODS.GET || !data) {
+      if (method === Methods.GET || !data) {
         xhr.send();
       } else {
         xhr.send(data as XMLHttpRequestBodyInit);

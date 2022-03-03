@@ -3,7 +3,7 @@ import './authorisation.less';
 import { validateInputs } from '../../common/utils';
 import { REGEXP_LOGIN, REGEXP_PASSWORD } from '../../common/const';
 
-export class AuthorisationPage extends Block {
+export class AuthorisationPage extends Block<{ onClick: Function }> {
   constructor() {
     super({
       onClick: () => this.validate(),
@@ -22,10 +22,8 @@ export class AuthorisationPage extends Block {
           <h2 class="authorisation-form__title">Авторизация</h2>
           <form class="authorisation-form__form">
             <div class="input-block">
-              {{{ Label inputName="login" labelText="Логин:" }}}
-              {{{ Input inputId="login" inputType="text" inputName="login" regexp="^(?=.{3,20}$)([a-zA-Z0-9_-]*[a-zA-Z_-][a-zA-Z0-9_-]*)$" }}}
-              {{{ Label inputName="password" labelText="Пароль:" }}}
-              {{{ Input inputId="password" inputType="password" inputName="password" regexp="^(?=.*?[A-ZА-ЯЁ])(?=.*?[0-9]).{8,40}$" }}}
+              {{{ InputField labelText="Логин:" inputId="login" inputType="text" inputName="login" regexp="${REGEXP_LOGIN}" }}}
+              {{{ InputField labelText="Пароль:" inputId="password" inputType="password" inputName="password" regexp="${REGEXP_PASSWORD}" }}}
 
               <nav class="nav-block">
                 <a class="nav-block__link" href="../registration/index.html">Регистрация</a>

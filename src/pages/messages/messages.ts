@@ -10,7 +10,11 @@ interface IChatListProps {
   messageList: IMessageProps[];
 }
 
-export class MessagesPage extends Block {
+interface IChatList extends IChatListProps {
+  onClick: Function;
+}
+
+export class MessagesPage extends Block<IChatList> {
   constructor({ chatList, messageList }: IChatListProps) {
     super({
       chatList,

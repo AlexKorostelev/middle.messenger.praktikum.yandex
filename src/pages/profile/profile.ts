@@ -15,7 +15,11 @@ interface IProfileProps {
   imagePath: string;
 }
 
-export class ProfilePage extends Block {
+interface IProfile extends IProfileProps {
+  onClick: Function;
+}
+
+export class ProfilePage extends Block<IProfile> {
   constructor(props: IProfileProps) {
     super({
       ...props,
@@ -53,24 +57,23 @@ export class ProfilePage extends Block {
                     <form class="profile-form__form">
                         <div class="input-block">
 
-                            {{{ Label inputName="email" labelText="Почта:" }}}
-                            {{{ Input inputId="email" inputValue="${email}" inputType="email" inputName="email" regexp="^[a-zA-Z0-9_-]+@[a-zA-Z]+.[a-zA-Z]+$" }}}
+                        {{{ InputField inputValue="${email}" labelText="Почта:" inputId="email" inputType="email"
+                                       inputName="email" regexp="${REGEXP_EMAIL}" }}}
 
-                            {{{ Label inputName="login" labelText="Логин:" }}}
-                            {{{ Input inputId="login" inputValue="${login}" inputType="text" inputName="login" regexp="^(?=.{3,20}$)([a-zA-Z0-9_-]*[a-zA-Z_-][a-zA-Z0-9_-]*)$" }}}
+                        {{{ InputField inputValue="${login}" labelText="Логин:" inputId="login" inputType="text"
+                                       inputName="login" regexp="${REGEXP_LOGIN}" }}}
 
-                            {{{ Label inputName="first_name" labelText="Имя:" }}}
-                            {{{ Input inputId="first_name" inputValue="${firstName}" inputType="text" inputName="first_name" regexp="^[A-ZА-ЯЁ][a-zA-Zа-яА-ЯёЁ]+$" }}}
+                        {{{ InputField inputValue="${firstName}" labelText="Имя:" inputId="first_name" inputType="text" 
+                                       inputName="first_name" regexp="${REGEXP_NAME}" }}}
 
-                            {{{ Label inputName="second_name" labelText="Фамилия:" }}}
-                            {{{ Input inputId="second_name" inputValue="${secondName}" inputType="text" inputName="second_name" regexp="^[A-ZА-ЯЁ][a-zA-Zа-яА-ЯёЁ]+$" }}}
+                        {{{ InputField inputValue="${secondName}" labelText="Фамилия:" inputId="second_name" inputType="text"
+                                       inputName="second_name" regexp="${REGEXP_NAME}" }}}
 
-                            {{{ Label inputName="display_name" labelText="Никнэйм:" }}}
-                            {{{ Input inputId="display_name" inputValue="${displayName}" inputType="text" inputName="display_name" regexp="^[A-ZА-ЯЁ][a-zA-Zа-яА-ЯёЁ]+$" }}}
+                        {{{ InputField inputValue="${displayName}" labelText="Никнэйм:" inputId="display_name" inputType="text"
+                                       inputName="display_name" regexp="${REGEXP_NICKNAME}" }}}
 
-                            {{{ Label inputName="phone" labelText="Телефон:" }}}
-                            {{{ Input inputId="phone" inputValue="${phone}" inputType="tel" inputName="phone" regexp="^\\+?\\d{10,15}$" }}}
-
+                        {{{ InputField inputValue="${phone}" labelText="Телефон:" inputId="phone" inputType="tel"
+                                       inputName="phone" regexp="${REGEXP_PHONE}" }}}
 
                             <nav class="nav-block">
                                 <a class="nav-block__link" href="../password/index.html">Сменить пароль</a>

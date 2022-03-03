@@ -1,4 +1,3 @@
-// import template from './button.hbs';
 import Block from '../../common/Block';
 import '../../common/styles/styles.less';
 import { validateInput } from '../../common/utils';
@@ -15,18 +14,17 @@ interface IInputProps {
   regexp: string;
 }
 
-export class Input extends Block {
-  constructor({
-    inputId, inputValue, inputPlaceholder, inputType, inputName, className, regexp,
-  }: IInputProps) {
+interface IInput extends IInputProps {
+  events: {
+    focus: Function;
+    blur: Function;
+  }
+}
+
+export class Input extends Block<IInput> {
+  constructor(props: IInputProps) {
     super({
-      inputId,
-      inputValue,
-      inputPlaceholder,
-      inputType,
-      inputName,
-      className,
-      regexp,
+      ...props,
       events: {
         focus: () => validateInput(this.props.inputId, this.props.regexp),
         blur: () => validateInput(this.props.inputId, this.props.regexp),

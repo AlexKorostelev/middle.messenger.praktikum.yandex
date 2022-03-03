@@ -8,7 +8,7 @@ export interface IMessageProps {
   messageTime?: string;
 }
 
-export class Message extends Block {
+export class Message extends Block<IMessageProps> {
   constructor({ isMyMessage, messageText }: IMessageProps) {
     super({
       isMyMessage,

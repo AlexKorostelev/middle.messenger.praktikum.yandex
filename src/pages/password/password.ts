@@ -3,7 +3,7 @@ import { validateInputs } from '../../common/utils';
 import { REGEXP_PASSWORD } from '../../common/const';
 import Block from '../../common/Block';
 
-export class PasswordPage extends Block {
+export class PasswordPage extends Block<{ onClick: Function }> {
   constructor() {
     super({
       onClick: (event: Event) => {
@@ -27,10 +27,10 @@ export class PasswordPage extends Block {
 
                 <form class="password-form__form">
                     <div class="input-block">
-                        {{{ Label inputName="oldPassword" labelText="Текущий пароль:" }}}
-                        {{{ Input inputId="oldPassword" inputType="password" inputName="oldPassword" regexp="^(?=.*?[A-ZА-ЯЁ])(?=.*?[0-9]).{8,40}$" }}}
-                        {{{ Label inputName="newPassword" labelText="Новый пароль:" }}}
-                        {{{ Input inputId="newPassword" inputType="password" inputName="newPassword" regexp="^(?=.*?[A-ZА-ЯЁ])(?=.*?[0-9]).{8,40}$" }}}
+                        {{{ InputField labelText="Текущий пароль:" inputId="oldPassword" inputType="password"
+                                       inputName="oldPassword" regexp="${REGEXP_PASSWORD}" }}}
+                        {{{ InputField labelText="Новый пароль:" inputId="newPassword" inputType="password"
+                                       inputName="newPassword" regexp="${REGEXP_PASSWORD}" }}}  
                     </div>
 
                     <div class="button-block">

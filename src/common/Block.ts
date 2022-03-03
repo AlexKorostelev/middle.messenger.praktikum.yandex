@@ -2,7 +2,7 @@ import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
 import EventBus from './EventBus';
 
-class Block {
+abstract class Block<Props extends {}> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -14,11 +14,9 @@ class Block {
 
   private _element: HTMLElement | null = null;
 
-  private _meta: { props: Record<string, string> };
+  protected props: Props;
 
-  protected props: Record<string, string>;
-
-  protected children: Record<string, Block>;
+  protected children: Record<string, any>;
 
   private eventBus: () => EventBus;
 
@@ -27,8 +25,6 @@ class Block {
     const { props, children } = this.getChildren(propsAndChildren);
 
     this.children = children;
-
-    this._meta = { props };
 
     this.props = this._makePropsProxy(props);
 
@@ -58,7 +54,7 @@ class Block {
 
   protected initChildren() {}
 
-  _registerEvents(eventBus: EventBus) {
+  private _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -69,7 +65,7 @@ class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  _componentDidMount() {
+  private _componentDidMount() {
     this.componentDidMount();
   }
 
@@ -79,18 +75,18 @@ class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate(oldProps: any, newProps: any) {
+  private _componentDidUpdate(oldProps: Props, newProps: Props) {
     if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  componentDidUpdate(oldProps: any, newProps: any) {
+  componentDidUpdate(oldProps: Props, newProps: Props) {
     return true;
   }
 
-  setProps = (nextProps: any) => {
+  setProps = (nextProps: Props) => {
     if (!nextProps) {
       return;
     }
@@ -102,7 +98,7 @@ class Block {
     return this._element;
   }
 
-  _render() {
+  private _render() {
     const templateString = this.render();
     const fragment = this.compile(templateString, { ...this.props });
     const newElement = fragment.firstElementChild as HTMLElement;
@@ -123,35 +119,31 @@ class Block {
     return this.element;
   }
 
-  _makePropsProxy(props: any) {
-    // Можно и так передать this
-    // Такой способ больше не применяется с приходом ES6+
-    const self = this;
-
+  private _makePropsProxy(props: Props) {
     return new Proxy(props, {
-      get(target: Record<string, unknown>, prop: string) {
+      get: (target: any, prop: string) => {
         const value = target[prop];
 
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target: Record<string, unknown>, prop: string, value: unknown) {
+      set: (target: Record<string, unknown>, prop: string, value: unknown) => {
         const oldProps = { ...target };
 
         target[prop] = value;
 
         // Запускаем обновление компоненты
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target);
+        this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target);
 
         return true;
       },
-      deleteProperty() {
+      deleteProperty: () => {
         throw new Error('Нет доступа');
       },
     });
   }
 
-  _addEvents() {
-    const { events } = this.props as any;
+  private _addEvents() {
+    const { events } = this.props as Props;
 
     if (!events) {
       return;
@@ -161,8 +153,8 @@ class Block {
     });
   }
 
-  _removeEvents() {
-    const { events } = this.props as any;
+  private _removeEvents() {
+    const { events } = this.props as Props;
 
     if (!events || !this._element) {
       return;
@@ -172,11 +164,11 @@ class Block {
     });
   }
 
-  _createDocumentElement(tagName: string) {
+  private _createDocumentElement(tagName: string) {
     return document.createElement(tagName);
   }
 
-  compile(templateString: string, context: any) {
+  compile(templateString: string, context: Record<string, any>) {
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
     const template = Handlebars.compile(templateString);
 

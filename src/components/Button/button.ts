@@ -8,7 +8,13 @@ interface IButtonProps {
   onClick: () => void;
 }
 
-export class Button extends Block {
+type TButton = Omit<IButtonProps, 'onClick'> & {
+  events: {
+    click: Function,
+  },
+};
+
+export class Button extends Block<TButton> {
   constructor({ label, buttonId, onClick }: IButtonProps) {
     super({
       label,
