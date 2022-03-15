@@ -1,9 +1,9 @@
 import Block from '../../common/Block';
-import './authorisation.less';
+import './authorization.less';
 import { validateInputs } from '../../common/utils';
 import { REGEXP_LOGIN, REGEXP_PASSWORD } from '../../common/const';
 
-export class AuthorisationPage extends Block<{ onClick: Function }> {
+export class AuthorizationPage extends Block<{ onClick: Function }> {
   constructor() {
     super({
       onClick: () => this.validate(),

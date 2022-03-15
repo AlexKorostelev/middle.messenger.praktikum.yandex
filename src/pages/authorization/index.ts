@@ -1,6 +1,6 @@
 import { registerComponent } from '../../common/registerComponent';
 import Button from '../../components/Button';
-import { AuthorisationPage } from './authorisation';
+import { AuthorizationPage } from './authorization';
 import { renderDom } from '../../common/renderDom';
 import InputField from '../../components/InputField';
 import Input from '../../components/Input';
@@ -9,6 +9,6 @@ registerComponent(Button, 'Button');
 registerComponent(Input, 'Input');
 registerComponent(InputField, 'InputField');
 
-const authPage = new AuthorisationPage();
+const authPage = new AuthorizationPage();
 
 renderDom('#app', authPage);
