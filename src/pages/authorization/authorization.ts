@@ -11,7 +11,7 @@ export class AuthorizationPage extends Block<{ onClick: Function }> {
   }
 
   validate() {
-    validateInputs({ elementId: 'login', regexp: REGEXP_LOGIN }, { elementId: 'password', regexp: REGEXP_PASSWORD });
+    validateInputs({ elementId: 'login-auth', regexp: REGEXP_LOGIN }, { elementId: 'password-auth', regexp: REGEXP_PASSWORD });
   }
 
   render() {
@@ -22,8 +22,8 @@ export class AuthorizationPage extends Block<{ onClick: Function }> {
           <h2 class="authorisation-form__title">Авторизация</h2>
           <form class="authorisation-form__form">
             <div class="input-block">
-              {{{ InputField labelText="Логин:" inputId="login" inputType="text" inputName="login" regexp="${REGEXP_LOGIN}" }}}
-              {{{ InputField labelText="Пароль:" inputId="password" inputType="password" inputName="password" regexp="${REGEXP_PASSWORD}" }}}
+              {{{ InputField labelText="Логин:" inputId="login-auth" inputType="text" inputName="login" regexp="${REGEXP_LOGIN}" }}}
+              {{{ InputField labelText="Пароль:" inputId="password-auth" inputType="password" inputName="password" regexp="${REGEXP_PASSWORD}" }}}
 
               <nav class="nav-block">
                 <a class="nav-block__link" href="../registration/index.html">Регистрация</a>

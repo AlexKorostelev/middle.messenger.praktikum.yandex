@@ -34,8 +34,8 @@ export class PasswordPage extends Block<{ onClick: Function }> {
                     </div>
 
                     <div class="button-block">
-                        {{{ Button buttonId="button-save" label="Сохранить" onClick=onClick }}}
-                        {{{ Button buttonId="button-cancel" label="Отмена" onClick=onClick }}}
+                        {{{ Button buttonId="button-save-new-password" label="Сохранить" onClick=onClick }}}
+                        {{{ Button buttonId="button-cancel-new-password" label="Отмена" onClick=onClick }}}
                     </div>
                 </form>
             </div>

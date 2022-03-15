@@ -9,6 +9,6 @@ registerComponent(Button, 'Button');
 registerComponent(Input, 'Input');
 registerComponent(InputField, 'InputField');
 
-const authPage = new AuthorizationPage();
+export const authorizationPage = new AuthorizationPage();
 
-renderDom('#app', authPage);
+// renderDom('#app', authPage);

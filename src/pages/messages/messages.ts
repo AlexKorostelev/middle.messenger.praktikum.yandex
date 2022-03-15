@@ -83,7 +83,7 @@ export class MessagesPage extends Block<IChatList> {
                 <form class="send-message-block">
                     {{{ Input inputId="message" inputPlaceholder="Сообщение" inputType="text" inputName="message" regexp="^.*\\S.*$" }}}
                     <div class="button-container">
-                        {{{ Button buttonId="button-send" label="Отправить" onClick=onClick }}}
+                        {{{ Button buttonId="button-send-message" label="Отправить" onClick=onClick }}}
                     </div>
                 </form>
             </div>

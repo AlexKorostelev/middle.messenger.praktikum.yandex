@@ -33,12 +33,12 @@ export class ProfilePage extends Block<IProfile> {
 
   validate() {
     validateInputs(
-      { elementId: 'email', regexp: REGEXP_EMAIL },
-      { elementId: 'login', regexp: REGEXP_LOGIN },
-      { elementId: 'first_name', regexp: REGEXP_NAME },
-      { elementId: 'second_name', regexp: REGEXP_NAME },
-      { elementId: 'display_name', regexp: REGEXP_NICKNAME },
-      { elementId: 'phone', regexp: REGEXP_PHONE },
+      { elementId: 'email-profile', regexp: REGEXP_EMAIL },
+      { elementId: 'login-profile', regexp: REGEXP_LOGIN },
+      { elementId: 'first_name-profile', regexp: REGEXP_NAME },
+      { elementId: 'second_name-profile', regexp: REGEXP_NAME },
+      { elementId: 'display_name-profile', regexp: REGEXP_NICKNAME },
+      { elementId: 'phone-profile', regexp: REGEXP_PHONE },
     );
   }
 
@@ -57,22 +57,22 @@ export class ProfilePage extends Block<IProfile> {
                     <form class="profile-form__form">
                         <div class="input-block">
 
-                        {{{ InputField inputValue="${email}" labelText="Почта:" inputId="email" inputType="email"
+                        {{{ InputField inputValue="${email}" labelText="Почта:" inputId="email-profile" inputType="email"
                                        inputName="email" regexp="${REGEXP_EMAIL}" }}}
 
-                        {{{ InputField inputValue="${login}" labelText="Логин:" inputId="login" inputType="text"
+                        {{{ InputField inputValue="${login}" labelText="Логин:" inputId="login-profile" inputType="text"
                                        inputName="login" regexp="${REGEXP_LOGIN}" }}}
 
-                        {{{ InputField inputValue="${firstName}" labelText="Имя:" inputId="first_name" inputType="text" 
+                        {{{ InputField inputValue="${firstName}" labelText="Имя:" inputId="first_name-profile" inputType="text" 
                                        inputName="first_name" regexp="${REGEXP_NAME}" }}}
 
-                        {{{ InputField inputValue="${secondName}" labelText="Фамилия:" inputId="second_name" inputType="text"
+                        {{{ InputField inputValue="${secondName}" labelText="Фамилия:" inputId="second_name-profile" inputType="text"
                                        inputName="second_name" regexp="${REGEXP_NAME}" }}}
 
-                        {{{ InputField inputValue="${displayName}" labelText="Никнэйм:" inputId="display_name" inputType="text"
+                        {{{ InputField inputValue="${displayName}" labelText="Никнэйм:" inputId="display_name-profile" inputType="text"
                                        inputName="display_name" regexp="${REGEXP_NICKNAME}" }}}
 
-                        {{{ InputField inputValue="${phone}" labelText="Телефон:" inputId="phone" inputType="tel"
+                        {{{ InputField inputValue="${phone}" labelText="Телефон:" inputId="phone-profile" inputType="tel"
                                        inputName="phone" regexp="${REGEXP_PHONE}" }}}
 
                             <nav class="nav-block">
@@ -81,8 +81,8 @@ export class ProfilePage extends Block<IProfile> {
                         </div>
 
                         <div class="button-block">
-                            {{{ Button buttonId="button-save" label="Сохранить" onClick=onClick }}}
-                            {{{ Button buttonId="button-cancel" label="Отмена" onClick=onClick }}}
+                            {{{ Button buttonId="button-save-profile" label="Сохранить" onClick=onClick }}}
+                            {{{ Button buttonId="button-cancel-profile" label="Отмена" onClick=onClick }}}
                         </div>
 
                     </form>

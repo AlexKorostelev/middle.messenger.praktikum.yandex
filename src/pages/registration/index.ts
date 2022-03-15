@@ -9,6 +9,6 @@ registerComponent(Button, 'Button');
 registerComponent(Input, 'Input');
 registerComponent(InputField, 'InputField');
 
-const registrationPage = new RegistrationPage();
+export const registrationPage = new RegistrationPage();
 
-renderDom('#app', registrationPage);
+// renderDom('#app', registrationPage);

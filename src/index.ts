@@ -5,20 +5,33 @@ import { AuthorizationPage } from './pages/authorization/authorization';
 import { MessagesPage } from './pages/messages/messages';
 import { PasswordPage } from './pages/password/password';
 import { errorPage } from './pages/error';
+import { registerComponent } from './common/registerComponent';
+import Button from './components/Button';
+import Input from './components/Input';
+import InputField from './components/InputField';
 
-document.addEventListener('DOMContentLoaded', () => {
-  const authorizationPage = new AuthorizationPage();
-  const registrationPage = new RegistrationPage();
-  // const passwordPage = new PasswordPage();
-  // const messagesPage = new MessagesPage();
-  // const profilePage = new ProfilePage();
-  // const error500Page = errorPage;
+registerComponent(Button, 'Button');
+registerComponent(Input, 'Input');
+registerComponent(InputField, 'InputField');
 
-  const router = new Router();
+// const authorizationPage = new AuthorizationPage();
+// const registrationPage = new RegistrationPage();
+// const passwordPage = new PasswordPage();
+// const messagesPage = new MessagesPage();
+// const profilePage = new ProfilePage();
+// const error500Page = errorPage;
 
-  router.use('/signin', AuthorizationPage).use('/signup', RegistrationPage);
+const router = new Router();
 
-  router.go('/signin');
+router.use('/signin', AuthorizationPage).use('/signup', RegistrationPage);
 
-  router.start();
-});
+router.go('/signin');
+
+setTimeout(() => {
+  // registerComponent(Button, 'Button');
+  // registerComponent(Input, 'Input');
+  // registerComponent(InputField, 'InputField');
+  router.go('/signup');
+}, 2000);
+
+router.start();

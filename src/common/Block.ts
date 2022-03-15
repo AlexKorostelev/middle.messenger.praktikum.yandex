@@ -168,6 +168,18 @@ abstract class Block<Props extends {}> {
     return document.createElement(tagName);
   }
 
+  show() {
+    if (this.element) {
+      this.element.style.display = 'flex';
+    }
+  }
+
+  hide() {
+    if (this.element) {
+      this.element.style.display = 'none';
+    }
+  }
+
   compile(templateString: string, context: Record<string, any>) {
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
     const template = Handlebars.compile(templateString);
