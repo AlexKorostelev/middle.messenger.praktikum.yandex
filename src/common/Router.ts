@@ -1,4 +1,5 @@
 import Block from './Block';
+import { ILinkProps } from '../components/Link/link';
 
 function isEqual(lhs: any, rhs: any) {
   return lhs === rhs;
@@ -134,7 +135,7 @@ export interface WithRouterProps {
 }
 
 export function withRouter(Component: typeof Block) {
-  return class WithRouter extends Component {
+  return class WithRouter extends Component<ILinkProps> {
     public static componentName = Component.name;
 
     constructor(props: any) {

@@ -26,7 +26,7 @@ export class AuthorizationPage extends Block<{ onClick: Function }> {
               {{{ InputField labelText="Пароль:" inputId="password-auth" inputType="password" inputName="password" regexp="${REGEXP_PASSWORD}" }}}
 
               <nav class="nav-block">
-                <a class="nav-block__link" href="../registration/index.html">Регистрация</a>
+                {{{ Link to="/signup" text="Регистрация" }}}
               </nav>
             </div>
             <div class="button-block">

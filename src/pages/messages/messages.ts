@@ -52,7 +52,7 @@ export class MessagesPage extends Block<IChatList> {
         <div class="page-container">
             <div class="block-left">
                 <div class="link-container">
-                    <a class="link-container__link" href="../../pages/profile/index.html">Профиль ❯</a>
+                    {{{ Link to="/profile" text="Профиль ❯" }}}
                 </div>
 
                 <div class="search-block">
