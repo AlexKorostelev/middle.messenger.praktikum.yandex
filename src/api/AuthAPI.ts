@@ -35,9 +35,9 @@ export default class AuthAPI extends BaseAPI {
     return this.http.get('/user');
   }
 
-  create = undefined;
-
   update = undefined;
+
+  create = undefined;
 
   delete = undefined;
 }

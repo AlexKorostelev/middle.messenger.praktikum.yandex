@@ -1,5 +1,4 @@
 import { RegistrationPage } from './pages/registration/registration';
-import { ProfilePage } from './pages/profile/profile';
 import Router from './common/Router';
 import { AuthorizationPage } from './pages/authorization/authorization';
 import { MessagesPage } from './pages/messages/messages';
@@ -12,6 +11,7 @@ import Chat from './components/Chat';
 import Message from './components/Message';
 import ErrorForm from './components/ErrorForm';
 import AuthController from './controllers/AuthController';
+import ProfilePage from './pages/profile';
 
 registerComponent(Button, 'Button');
 registerComponent(Input, 'Input');
@@ -30,10 +30,11 @@ router.use('/signin', AuthorizationPage)
 
 try {
   AuthController.fetchUser().then(() => {
-    router.go('/profile')
+    router.go('/profile');
   });
 } catch {
   alert('Ошибка запроса данных пользователя!');
 }
+// router.go('/signin');
 
 router.start();

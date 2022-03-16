@@ -26,8 +26,8 @@ export class RegistrationPage extends Block<{ onClick: Function }> {
     if (data) {
       try {
         await AuthController.signUp(data as SignUpData).then(() => alert('Регистрация выполнена успешно!'));
-      } catch {
-        alert('Ошибка выполнения запроса регистрации!');
+      } catch (error) {
+        alert(`Ошибка выполнения запроса регистрации! ${error ? error.reason : ''}`);
       }
     }
   }

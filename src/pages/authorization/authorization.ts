@@ -29,7 +29,7 @@ export class AuthorizationPage extends Block<{ onClick: Function }> {
           router.go('/messages');
         });
       } catch (error) {
-        alert(`Ошибка выполнения запроса авторизации! ${error}`);
+        alert(`Ошибка выполнения запроса авторизации! ${error ? error.reason : ''}`);
       }
     }
   }

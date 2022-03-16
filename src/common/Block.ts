@@ -87,11 +87,10 @@ abstract class Block<Props extends {}> {
   }
 
   setProps = (nextProps: Props) => {
-    // if (!nextProps) {
-    //   return;
-    // }
+    if (!nextProps) {
+      return;
+    }
 
-    console.log('nextProps: ', nextProps);
     Object.assign(this.props, nextProps);
   };
 
