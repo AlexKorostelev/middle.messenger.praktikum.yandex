@@ -20,38 +20,38 @@ export default class HTTPTransport {
     this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
   }
 
-  public get<Response>(path = '/'):Promise<Response> {
+  public get<Response>(path = '/'): Promise<Response> {
     return this.request<Response>(this.endpoint + path);
   }
 
-  public post<Response = void>(path: string, data?: unknown):Promise<Response> {
+  public post<Response = void>(path: string, data?: unknown): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
       method: Method.POST,
       data,
     });
   }
 
-  public put<Response = void>(path: string, data?: unknown):Promise<Response> {
+  public put<Response = void>(path: string, data?: unknown): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
       method: Method.PUT,
       data,
     });
   }
 
-  public patch<Response = void>(path: string, data?: unknown):Promise<Response> {
+  public patch<Response = void>(path: string, data?: unknown): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
       method: Method.PATCH,
       data,
     });
   }
 
-  public delete<Response>(path: string):Promise<Response> {
+  public delete<Response>(path: string): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
       method: Method.DELETE,
     });
   }
 
-  private request<Response>(url:string, options: Options = { method: Method.GET }): Promise<Response> {
+  private request<Response>(url: string, options: Options = { method: Method.GET }): Promise<Response> {
     const { method, data } = options;
 
     return new Promise((resolve, reject) => {
@@ -59,6 +59,9 @@ export default class HTTPTransport {
       xhr.open(method, url);
 
       xhr.onreadystatechange = () => {
+        if (xhr.readyState !== 4) {
+          return;
+        }
         if (xhr.status < 400) {
           resolve(xhr.response);
         } else {

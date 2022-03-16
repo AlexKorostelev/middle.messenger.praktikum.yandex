@@ -4,13 +4,13 @@ import { REGEXP_EMAIL, REGEXP_LOGIN, REGEXP_NAME, REGEXP_NICKNAME, REGEXP_PHONE 
 import Block from '../../common/Block';
 
 interface IProfileProps {
-  email: string;
-  login: string;
-  firstName: string;
-  secondName: string;
-  displayName: string;
-  phone: string;
-  imagePath: string;
+  email?: string;
+  login?: string;
+  firstName?: string;
+  secondName?: string;
+  displayName?: string;
+  phone?: string;
+  imagePath?: string;
 }
 
 interface IProfile extends IProfileProps {
@@ -19,6 +19,7 @@ interface IProfile extends IProfileProps {
 
 export class ProfilePage extends Block<IProfile> {
   constructor(props: IProfileProps) {
+    console.log('profile props: ', props);
     super({
       ...props,
       onClick: (event: Event) => {

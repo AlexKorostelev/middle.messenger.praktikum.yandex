@@ -1,19 +1,19 @@
 import Block from '../../common/Block';
 import './registration.less';
 import { validateInputs } from '../../common/utils';
-import {
-  REGEXP_EMAIL, REGEXP_LOGIN, REGEXP_NAME, REGEXP_PASSWORD, REGEXP_PHONE,
-} from '../../common/const';
+import { REGEXP_EMAIL, REGEXP_LOGIN, REGEXP_NAME, REGEXP_PASSWORD, REGEXP_PHONE } from '../../common/const';
+import AuthController from '../../controllers/AuthController';
+import { SignUpData } from '../../api/AuthAPI';
 
 export class RegistrationPage extends Block<{ onClick: Function }> {
   constructor() {
     super({
-      onClick: () => this.validate(),
+      onClick: () => this.onSignUp(),
     });
   }
 
-  validate() {
-    validateInputs(
+  async onSignUp() {
+    const data = validateInputs(
       { elementId: 'email-reg', regexp: REGEXP_EMAIL },
       { elementId: 'login-reg', regexp: REGEXP_LOGIN },
       { elementId: 'first_name-reg', regexp: REGEXP_NAME },
@@ -21,6 +21,15 @@ export class RegistrationPage extends Block<{ onClick: Function }> {
       { elementId: 'phone-reg', regexp: REGEXP_PHONE },
       { elementId: 'password-reg', regexp: REGEXP_PASSWORD },
     );
+
+    // Если все поля заполнены и провалидированы - отправляем запрос
+    if (data) {
+      try {
+        await AuthController.signUp(data as SignUpData).then(() => alert('Регистрация выполнена успешно!'));
+      } catch {
+        alert('Ошибка выполнения запроса регистрации!');
+      }
+    }
   }
 
   render() {

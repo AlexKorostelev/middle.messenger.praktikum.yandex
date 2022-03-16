@@ -6,8 +6,8 @@ import { IChatProps } from '../../components/Chat/chat';
 import { IMessageProps } from '../../components/Message/message';
 
 interface IChatListProps {
-  chatList: IChatProps[];
-  messageList: IMessageProps[];
+  chatList?: IChatProps[];
+  messageList?: IMessageProps[];
 }
 
 interface IChatList extends IChatListProps {
@@ -15,10 +15,9 @@ interface IChatList extends IChatListProps {
 }
 
 export class MessagesPage extends Block<IChatList> {
-  constructor({ chatList, messageList }: IChatListProps) {
+  constructor(props: IChatListProps) {
     super({
-      chatList,
-      messageList,
+      ...props,
       onClick: () => this.validate(),
     });
   }
@@ -28,10 +27,18 @@ export class MessagesPage extends Block<IChatList> {
   }
 
   messageListToJSX() {
+    if (!this.props.messageList) {
+      return '';
+    }
+
     return this.props.messageList.map((message: IMessageProps) => `{{{ Message isMyMessage=${message.isMyMessage} messageText="${message.messageText}" }}}`).join('');
   }
 
   chatListToJSX() {
+    if (!this.props.chatList) {
+      return '';
+    }
+
     return this.props.chatList
       .map(
         (chat: IChatProps) => `

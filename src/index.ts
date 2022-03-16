@@ -3,7 +3,6 @@ import { ProfilePage } from './pages/profile/profile';
 import Router from './common/Router';
 import { AuthorizationPage } from './pages/authorization/authorization';
 import { MessagesPage } from './pages/messages/messages';
-import { errorPage } from './pages/error';
 import { registerComponent } from './common/registerComponent';
 import Button from './components/Button';
 import Input from './components/Input';
@@ -12,6 +11,7 @@ import Link from './components/Link';
 import Chat from './components/Chat';
 import Message from './components/Message';
 import ErrorForm from './components/ErrorForm';
+import AuthController from './controllers/AuthController';
 
 registerComponent(Button, 'Button');
 registerComponent(Input, 'Input');
@@ -20,15 +20,20 @@ registerComponent(Link, 'Link');
 registerComponent(Chat, 'Chat');
 registerComponent(Message, 'Message');
 
-const router = new Router();
+export const router = new Router();
 
-router
-  .use('/signin', AuthorizationPage)
+router.use('/signin', AuthorizationPage)
   .use('/signup', RegistrationPage)
   .use('/profile', ProfilePage)
   .use('/messages', MessagesPage)
   .use('/error', ErrorForm);
 
-router.go('/signin');
+try {
+  AuthController.fetchUser().then(() => {
+    router.go('/profile')
+  });
+} catch {
+  alert('Ошибка запроса данных пользователя!');
+}
 
 router.start();

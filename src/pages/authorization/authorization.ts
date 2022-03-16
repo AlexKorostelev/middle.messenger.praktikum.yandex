@@ -2,16 +2,44 @@ import Block from '../../common/Block';
 import './authorization.less';
 import { validateInputs } from '../../common/utils';
 import { REGEXP_LOGIN, REGEXP_PASSWORD } from '../../common/const';
+import AuthController from '../../controllers/AuthController';
+import { SignInData } from '../../api/AuthAPI';
+import { router } from '../../index';
 
 export class AuthorizationPage extends Block<{ onClick: Function }> {
   constructor() {
     super({
-      onClick: () => this.validate(),
+      onClick: (event: Event) => {
+        if ((event.target as HTMLButtonElement).id === 'button-auth') {
+          this.onSignIn();
+        } else {
+          this.logout();
+        }
+      },
     });
   }
 
-  validate() {
-    validateInputs({ elementId: 'login-auth', regexp: REGEXP_LOGIN }, { elementId: 'password-auth', regexp: REGEXP_PASSWORD });
+  async onSignIn() {
+    const data = validateInputs({ elementId: 'login-auth', regexp: REGEXP_LOGIN }, { elementId: 'password-auth', regexp: REGEXP_PASSWORD });
+
+    if (data) {
+      try {
+        await AuthController.signIn(data as SignInData).then(() => {
+          console.log('Авторизация выполнена успешно!');
+          router.go('/messages');
+        });
+      } catch (error) {
+        alert(`Ошибка выполнения запроса авторизации! ${error}`);
+      }
+    }
+  }
+
+  async logout() {
+    try {
+      await AuthController.logout().then(() => alert('Выход пользователя выполнен успешно!'));
+    } catch {
+      alert('Ошибка выполнения запроса /logout!');
+    }
   }
 
   render() {
@@ -31,6 +59,7 @@ export class AuthorizationPage extends Block<{ onClick: Function }> {
             </div>
             <div class="button-block">
               {{{ Button buttonId="button-auth" label="Авторизация" onClick=onClick }}}
+              {{{ Button buttonId="button-logout" label="Выход" onClick=onClick }}}
             </div>
           </form>
         </div>
