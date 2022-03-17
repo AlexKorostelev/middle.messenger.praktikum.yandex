@@ -1,3 +1,4 @@
+// eslint-disable-next-line max-classes-per-file
 import EventBus from './EventBus';
 import { Indexed, isEqual, set } from './helpers';
 import Block from './Block';
@@ -17,8 +18,23 @@ interface IUserData {
   avatar: string;
 }
 
+interface ILastMessage {
+  time: string;
+  content: string;
+}
+
+export interface IChatData {
+  id: number;
+  title: string;
+  avatar: string | null;
+  created_by: number;
+  unread_count: number;
+  last_message: ILastMessage;
+}
+
 interface IStoreData {
   currentUser?: IUserData;
+  chatList?: IChatData[];
 }
 
 class Store extends EventBus {

@@ -6,6 +6,7 @@ import {
 import Block from '../../common/Block';
 import UserController from '../../controllers/UserController';
 import { IProfileData } from '../../api/UserAPI';
+import ChatController from '../../controllers/ChatController';
 
 interface IProfileProps {
   id?: string;
@@ -26,12 +27,17 @@ export class ProfilePage extends Block<IProfile> {
   constructor(props: IProfileProps) {
     super({
       ...props,
-      onClick: (event: Event) => {
-        if ((event.target as HTMLButtonElement).id === 'button-save-profile') {
-          this.onSaveProfile();
-        }
-      },
+      onClick: () => this.onSaveProfile(),
+      getChats: () => this.getChats(),
     });
+  }
+
+  async getChats() {
+    try {
+      await ChatController.getChats();
+    } catch (error) {
+      alert(`Ошибка выполнения запроса получения Ясписка чатов! ${error ? error.reason : ''}`);
+    }
   }
 
   async onSaveProfile() {
@@ -91,12 +97,12 @@ export class ProfilePage extends Block<IProfile> {
                                 inputName="phone" regexp="${REGEXP_PHONE}" }}}
 
                         </div>
-
                         <div class="button-block">
                             {{{ Button buttonId="button-save-profile" label="Сохранить" onClick=onClick }}}
-                            {{{ Button buttonId="button-cancel-profile" label="Отмена" onClick=onClick }}}
                         </div>
-
+                        <nav class="nav-block">
+                            {{{ Link to="/messages" text="На главную" linkHandler=getChats }}}
+                        </nav>
                     </form>
                 </div>
                 <div class="avatar">

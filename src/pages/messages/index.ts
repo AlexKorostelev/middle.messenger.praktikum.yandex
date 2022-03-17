@@ -1,4 +1,14 @@
-import { registerComponent } from '../../common/registerComponent';
+import { withStore } from '../../common/Store';
+import { MessagesPage } from './messages';
+
+const withChats = withStore((state) => ({
+  chatList: state.chatList,
+  messageList: state.messagesList || [],
+}));
+
+export default withChats(MessagesPage);
+
+/* import { registerComponent } from '../../common/registerComponent';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { MessagesPage } from './messages';
@@ -130,4 +140,4 @@ setTimeout(() => {
       behavior: 'smooth',
     });
   }
-}, 500);
+}, 500); */

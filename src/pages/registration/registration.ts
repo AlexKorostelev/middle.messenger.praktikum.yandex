@@ -1,9 +1,12 @@
 import Block from '../../common/Block';
 import './registration.less';
 import { validateInputs } from '../../common/utils';
-import { REGEXP_EMAIL, REGEXP_LOGIN, REGEXP_NAME, REGEXP_PASSWORD, REGEXP_PHONE } from '../../common/const';
+import {
+  REGEXP_EMAIL, REGEXP_LOGIN, REGEXP_NAME, REGEXP_PASSWORD, REGEXP_PHONE,
+} from '../../common/const';
 import AuthController from '../../controllers/AuthController';
 import { SignUpData } from '../../api/AuthAPI';
+import Router from '../../common/Router';
 
 export class RegistrationPage extends Block<{ onClick: Function }> {
   constructor() {
@@ -25,7 +28,7 @@ export class RegistrationPage extends Block<{ onClick: Function }> {
     // Если все поля заполнены и провалидированы - отправляем запрос
     if (data) {
       try {
-        await AuthController.signUp(data as SignUpData).then(() => alert('Регистрация выполнена успешно!'));
+        await AuthController.signUp(data as SignUpData).then(() => new Router().go('/messages'));
       } catch (error) {
         alert(`Ошибка выполнения запроса регистрации! ${error ? error.reason : ''}`);
       }

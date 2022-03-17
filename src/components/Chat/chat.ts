@@ -1,19 +1,21 @@
 // import template from './button.hbs';
 import Block from '../../common/Block';
 import '../../pages/messages/messages.less';
+import { getParentDataSetParam } from '../../common/utils';
 
 export interface IChatProps {
+  id: string;
   title: string;
   message: string;
   time: string;
-  newMessages: string;
-  icon: string;
+  unreadMessages: string;
+  avatar: string;
 }
 
 interface IChat extends IChatProps {
   events: {
-    click: Function,
-  },
+    click: Function;
+  };
 }
 
 export class Chat extends Block<IChat> {
@@ -21,8 +23,11 @@ export class Chat extends Block<IChat> {
     super({
       ...props,
       events: {
-        // eslint-disable-next-line no-console
-        click: () => console.log('Select chat'),
+        click: (e: PointerEvent) => {
+          const id = getParentDataSetParam(e.target as HTMLElement, 'chat-item', 'id');
+          // eslint-disable-next-line no-console
+          console.log('Select chat with id: ', id);
+        },
       },
     });
   }
@@ -30,9 +35,9 @@ export class Chat extends Block<IChat> {
   render() {
     // language=hbs
     return `
-        <div class="chat-item">
+        <div class="chat-item" data-id={{id}}>
             <div class="chat-logo-block">
-                <img class="chat-logo-block__img" src={{icon}} height="60px" width="60px" alt="logo {{title}}" />
+                <img class="chat-logo-block__img" src={{avatar}} height="60px" width="60px" alt="logo {{title}}" />
             </div>
 
             <div class="message-container">
@@ -50,7 +55,7 @@ export class Chat extends Block<IChat> {
                 </div>
 
                 <div class="chat-item-info__messages-count">
-                    {{newMessages}}
+                    {{unreadMessages}}
                 </div>
             </div>
         </div>
