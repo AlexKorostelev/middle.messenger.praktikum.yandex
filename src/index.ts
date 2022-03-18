@@ -10,8 +10,8 @@ import Chat from './components/Chat';
 import Message from './components/Message';
 import ErrorForm from './components/ErrorForm';
 import ProfilePage from './pages/profile';
-import ChatController from './controllers/ChatController';
 import MessagesPage from './pages/messages';
+import AuthController from "./controllers/AuthController";
 
 registerComponent(Button, 'Button');
 registerComponent(Input, 'Input');
@@ -20,7 +20,7 @@ registerComponent(Link, 'Link');
 registerComponent(Chat, 'Chat');
 registerComponent(Message, 'Message');
 
-export const router = new Router();
+const router = new Router();
 
 router.use('/signin', AuthorizationPage)
   .use('/signup', RegistrationPage)
@@ -32,7 +32,7 @@ router.use('/signin', AuthorizationPage)
  * Если запрос прошел успешно - то кука валидна, делаем редирект на страницу чатов.
  * Если ошибка - делаем редирект на страницу авторизации.
  */
-ChatController.getChats()
+AuthController.fetchUser()
   .then(() => {
     router.go('/messages');
   })

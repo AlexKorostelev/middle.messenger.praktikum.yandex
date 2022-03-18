@@ -5,23 +5,18 @@ import { WithRouterProps } from '../../common/Router';
 export interface ILinkProps extends WithRouterProps {
   to: string;
   text: string;
-  linkHandler: Function;
 }
 
 export class Link extends Block<ILinkProps> {
   constructor({
-    to, text, linkHandler, router,
+    to, text, router,
   }: ILinkProps) {
     super({
       to,
       text,
-      linkHandler,
       events: {
         click: (e: MouseEvent) => {
           e.preventDefault();
-          if (linkHandler) {
-            linkHandler();
-          }
           router.go(to);
         },
       },

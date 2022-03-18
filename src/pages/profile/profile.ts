@@ -6,7 +6,7 @@ import {
 import Block from '../../common/Block';
 import UserController from '../../controllers/UserController';
 import { IProfileData } from '../../api/UserAPI';
-import ChatController from '../../controllers/ChatController';
+import AuthController from '../../controllers/AuthController';
 
 interface IProfileProps {
   id?: string;
@@ -28,16 +28,12 @@ export class ProfilePage extends Block<IProfile> {
     super({
       ...props,
       onClick: () => this.onSaveProfile(),
-      getChats: () => this.getChats(),
     });
   }
 
-  async getChats() {
-    try {
-      await ChatController.getChats();
-    } catch (error) {
-      alert(`Ошибка выполнения запроса получения Ясписка чатов! ${error ? error.reason : ''}`);
-    }
+  componentDidMount() {
+    super.componentDidMount();
+    AuthController.fetchUser();
   }
 
   async onSaveProfile() {
@@ -59,7 +55,6 @@ export class ProfilePage extends Block<IProfile> {
   }
 
   render() {
-    // 'https://previews.123rf.com/images/denizjdazel/denizjdazel1902/denizjdazel190200045/124841367-.jpg?fj=1'
     const email = !this.props.email ? undefined : `"${this.props.email}"`;
     const login = !this.props.login ? undefined : `"${this.props.login}"`;
     const firstName = !this.props.first_name ? undefined : `"${this.props.first_name}"`;
@@ -101,7 +96,7 @@ export class ProfilePage extends Block<IProfile> {
                             {{{ Button buttonId="button-save-profile" label="Сохранить" onClick=onClick }}}
                         </div>
                         <nav class="nav-block">
-                            {{{ Link to="/messages" text="На главную" linkHandler=getChats }}}
+                            {{{ Link to="/messages" text="На главную" }}}
                         </nav>
                     </form>
                 </div>

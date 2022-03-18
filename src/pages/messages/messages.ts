@@ -38,6 +38,11 @@ export class MessagesPage extends Block<IChatList> {
     });
   }
 
+  componentDidMount() {
+    super.componentDidMount();
+    ChatController.getChats(); // Получаем список чатов и сетим его в стор
+  }
+
   addUserToChat() {
     const userId = prompt('Введите ID пользователя для добавления в текущий чат');
     if (userId) {
@@ -167,7 +172,7 @@ export class MessagesPage extends Block<IChatList> {
                           {{{ Button buttonId="button-delete-user" label="Исключить" onClick=onDeleteUser }}}
                         ` : ''}
                     </div>
-                    {{{ Link to="/profile" text="Профиль ❯" linkHandler=getProfileInfo }}}
+                    {{{ Link to="/profile" text="Профиль ❯" }}}
                 </div>
 
                 <div class="search-block">

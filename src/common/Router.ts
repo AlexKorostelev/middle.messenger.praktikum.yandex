@@ -9,6 +9,7 @@ function render(query: any, block: any) {
   const root = document.querySelector(query);
   // root.innerHTML = '';
   root.append(block.getContent());
+  block.dispatchComponentDidMount();
 
   return root;
 }
