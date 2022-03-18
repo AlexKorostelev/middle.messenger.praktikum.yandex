@@ -5,6 +5,7 @@ import { REGEXP_LOGIN, REGEXP_PASSWORD } from '../../common/const';
 import AuthController from '../../controllers/AuthController';
 import { SignInData } from '../../api/AuthAPI';
 import Router from '../../common/Router';
+import ChatController from '../../controllers/ChatController';
 
 export class AuthorizationPage extends Block<{ onClick: Function }> {
   constructor() {
@@ -26,7 +27,8 @@ export class AuthorizationPage extends Block<{ onClick: Function }> {
       try {
         await AuthController.signIn(data as SignInData).then(() => {
           console.log('Авторизация выполнена успешно!');
-          new Router().go('/messages');
+          ChatController.getChats();
+          (new Router()).go('/messages');
         });
       } catch (error) {
         alert(`Ошибка выполнения запроса авторизации! ${error ? error.reason : ''}`);

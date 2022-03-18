@@ -2,6 +2,8 @@
 import Block from '../../common/Block';
 import '../../pages/messages/messages.less';
 import { getParentDataSetParam } from '../../common/utils';
+import { store } from '../../common/Store';
+import ChatController from '../../controllers/ChatController';
 
 export interface IChatProps {
   id: string;
@@ -23,13 +25,19 @@ export class Chat extends Block<IChat> {
     super({
       ...props,
       events: {
-        click: (e: PointerEvent) => {
-          const id = getParentDataSetParam(e.target as HTMLElement, 'chat-item', 'id');
-          // eslint-disable-next-line no-console
-          console.log('Select chat with id: ', id);
-        },
+        click: (e: PointerEvent) => this.setCurrentChatId(e),
       },
     });
+  }
+
+  async setCurrentChatId(e: PointerEvent) {
+    const id = Number(getParentDataSetParam(e.target as HTMLElement, 'chat-item', 'id'));
+    if (id) {
+      store.set('currentChatId', id);
+      const chatUsers = await ChatController.getChatUsers(id);
+      // eslint-disable-next-line no-console
+      console.log('Пользователи чата: ', chatUsers);
+    }
   }
 
   render() {

@@ -1,4 +1,5 @@
 import BaseAPI from './BaseAPI';
+import { IProfileData } from './UserAPI';
 
 export interface IChatData {
   first_name: 'string';
@@ -14,7 +15,21 @@ export default class ChatAPI extends BaseAPI {
     super('/chats');
   }
 
-  create = undefined;
+  getChatUsers(chatId: number): Promise<IProfileData[]> {
+    return this.http.get(`/${chatId}/users`);
+  }
+
+  addUserToChat(chatId: number, userId: number) {
+    return this.http.put('/users', { users: [userId], chatId });
+  }
+
+  removeUserFromChat(chatId: number, userId: number) {
+    return this.http.delete('/users', { users: [userId], chatId });
+  }
+
+  create(chatTitle: string): Promise<unknown> {
+    return this.http.post('', { title: chatTitle });
+  }
 
   update = undefined;
 
@@ -22,5 +37,7 @@ export default class ChatAPI extends BaseAPI {
     return this.http.get('');
   }
 
-  delete = undefined;
+  delete(chatId: string): Promise<unknown> {
+    return this.http.delete('', { chatId });
+  }
 }

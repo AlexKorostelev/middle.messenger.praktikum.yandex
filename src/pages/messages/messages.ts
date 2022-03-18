@@ -3,10 +3,10 @@ import './messages.less';
 import { validateInputs } from '../../common/utils';
 import { REGEXP_MESSAGE } from '../../common/const';
 import { IMessageProps } from '../../components/Message/message';
-import { IChatData } from '../../common/Store';
+import { IChatData, store } from '../../common/Store';
 import AuthController from '../../controllers/AuthController';
 import Router from '../../common/Router';
-// import { router } from '../../index';
+import ChatController from '../../controllers/ChatController';
 
 interface IChatListProps {
   chatList?: IChatData[];
@@ -30,8 +30,55 @@ export class MessagesPage extends Block<IChatList> {
           this.onLogout();
         }
       },
+      onCreateChat: () => this.createChat(),
+      onDeleteChat: () => this.deleteChat(),
+      onAddUser: () => this.addUserToChat(),
+      onDeleteUser: () => this.removeUserFromChat(),
       getProfileInfo: () => this.getProfileInfo(),
     });
+  }
+
+  addUserToChat() {
+    const userId = prompt('Введите ID пользователя для добавления в текущий чат');
+    if (userId) {
+      ChatController.addUserToChat(store.getState().currentChatId, +userId)
+        .then(() => alert('Пользователь успешно добавлен!'))
+        .catch((error) => alert(`Ошибка выполнения запроса! ${error ? error.reason : ''}`));
+    } else {
+      alert('Поле не должно быть пустым!');
+    }
+  }
+
+  removeUserFromChat() {
+    const userId = prompt('Введите ID пользователя для удаления из текущего чата');
+    if (userId) {
+      ChatController.removeUserFromChat(store.getState().currentChatId, +userId)
+        .then(() => alert('Пользователь успешно удалён!'))
+        .catch((error) => alert(`Ошибка выполнения запроса! ${error ? error.reason : ''}`));
+    } else {
+      alert('Поле не должно быть пустым!');
+    }
+  }
+
+  createChat() {
+    const chatTitle = prompt('Введите название чата');
+    if (chatTitle) {
+      ChatController.createChat(chatTitle)
+        .then(() => ChatController.getChats())
+        .catch((error) => alert(`Ошибка выполнения запроса! ${error ? error.reason : ''}`));
+    } else {
+      alert('Название чата не должно быть пустым!');
+    }
+  }
+
+  deleteChat() {
+    const result = window.confirm('Вы действительно хотите удалить этот чат?');
+
+    if (result) {
+      ChatController.deleteChat(store.getState().currentChatId)
+        .then(() => ChatController.getChats())
+        .catch((error) => alert(`Ошибка выполнения запроса! ${error ? error.reason : ''}`));
+    }
   }
 
   async getProfileInfo() {
@@ -51,7 +98,7 @@ export class MessagesPage extends Block<IChatList> {
 
   async onLogout() {
     try {
-      await AuthController.logout().then(() => new Router().go('/signin'));
+      await AuthController.logout().then(() => (new Router()).go('/signin'));
     } catch (error) {
       alert(`Ошибка выполнения запроса /logout! ${error ? error.reason : ''}`);
     }
@@ -91,12 +138,35 @@ export class MessagesPage extends Block<IChatList> {
       .join('');
   }
 
+  getChatTitle() {
+    const chatId = store.getState()?.currentChatId;
+    if (chatId) {
+      const chat = store.getState()?.chatList.filter((item: IChatData) => item.id === chatId);
+
+      if (chat && chat.length > 0) {
+        return chat[0].title;
+      }
+    }
+
+    return undefined;
+  }
+
   render() {
+    const currentChatTitle = this.getChatTitle();
+
     // language=hbs
     return `
         <div class="messages-page-container">
             <div class="block-left">
                 <div class="link-container">
+                    <div class="button-chat-container">
+                        {{{ Button buttonId="button-create-chat" label="Создать чат" onClick=onCreateChat }}}
+                        
+                        ${currentChatTitle ? `
+                          {{{ Button buttonId="button-add-user" label="Пригласить" onClick=onAddUser }}}
+                          {{{ Button buttonId="button-delete-user" label="Исключить" onClick=onDeleteUser }}}
+                        ` : ''}
+                    </div>
                     {{{ Link to="/profile" text="Профиль ❯" linkHandler=getProfileInfo }}}
                 </div>
 
@@ -111,10 +181,14 @@ export class MessagesPage extends Block<IChatList> {
             <div class="block-right">
                 <div class="profile-info">
                     <div class="profile-logo">
-                        <img class="profile-logo__img" src="https://help.alueducation.com/system/photos/360113168439/images.png" height="34px" width="34px" alt="logo {{title}}" />
+                        ${currentChatTitle ? `
+                            <img class="profile-logo__img" src="https://help.alueducation.com/system/photos/360113168439/images.png"
+                                 height="34px" width="34px" alt="logo {{title}}" />  
+                            ` : ''}
                     </div>
                     <div class="profile-info__chat-name">
-                        Александр
+                        ${currentChatTitle || '↙ Выберите чат из списка'}
+                        ${currentChatTitle ? '{{{ Button buttonId="button-delete-chat" label="Удалить" onClick=onDeleteChat }}}' : ''}
                     </div>
                     <div class="profile-info__settings-icon">
                         {{{ Button buttonId="button-logout" label="Выход" onClick=onClick }}}

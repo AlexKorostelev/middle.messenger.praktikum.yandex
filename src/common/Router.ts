@@ -7,6 +7,7 @@ function isEqual(lhs: any, rhs: any) {
 
 function render(query: any, block: any) {
   const root = document.querySelector(query);
+  // root.innerHTML = '';
   root.append(block.getContent());
 
   return root;

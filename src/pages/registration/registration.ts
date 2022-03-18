@@ -28,7 +28,7 @@ export class RegistrationPage extends Block<{ onClick: Function }> {
     // Если все поля заполнены и провалидированы - отправляем запрос
     if (data) {
       try {
-        await AuthController.signUp(data as SignUpData).then(() => new Router().go('/messages'));
+        await AuthController.signUp(data as SignUpData).then(() => (new Router()).go('/messages'));
       } catch (error) {
         alert(`Ошибка выполнения запроса регистрации! ${error ? error.reason : ''}`);
       }

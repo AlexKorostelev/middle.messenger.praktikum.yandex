@@ -1,4 +1,3 @@
-// import template from './button.hbs';
 import Block from '../../common/Block';
 import '../../common/styles/styles.less';
 import { WithRouterProps } from '../../common/Router';

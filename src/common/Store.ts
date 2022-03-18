@@ -35,6 +35,7 @@ export interface IChatData {
 interface IStoreData {
   currentUser?: IUserData;
   chatList?: IChatData[];
+  currentChatId?: number;
 }
 
 class Store extends EventBus {
