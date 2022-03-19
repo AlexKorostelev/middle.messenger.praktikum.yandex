@@ -31,19 +31,21 @@ export class Chat extends Block<IChat> {
   }
 
   async setCurrentChatId(e: PointerEvent) {
-    const id = Number(getParentDataSetParam(e.target as HTMLElement, 'chat-item', 'id'));
+    const id = getParentDataSetParam(e.target as HTMLElement, 'chat-item', 'id');
     if (id) {
       store.set('currentChatId', id);
       const chatUsers = await ChatController.getChatUsers(id);
       // eslint-disable-next-line no-console
-      console.log('Пользователи чата: ', chatUsers);
+      console.log(`Чат ${id}, пользователи: `, chatUsers);
     }
   }
 
   render() {
+    const activeChatBorder = store.getState().currentChatId === this.props.id ? 'style="background: #92bdff"' : '';
+
     // language=hbs
     return `
-        <div class="chat-item" data-id={{id}}>
+        <div class="chat-item" data-id={{id}} ${activeChatBorder}>
             <div class="chat-logo-block">
                 <img class="chat-logo-block__img" src={{avatar}} height="60px" width="60px" alt="logo {{title}}" />
             </div>

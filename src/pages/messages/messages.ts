@@ -93,15 +93,63 @@ export class MessagesPage extends Block<IChatList> {
   }
 
   onSendMessage() {
-    const data = validateInputs({ elementId: 'message', regexp: REGEXP_MESSAGE });
-    if (data) {
-      console.log('message sent!', data);
-    }
+    // const data = validateInputs({ elementId: 'message', regexp: REGEXP_MESSAGE });
+    // if (data) {
+    //   console.log('message sent!', data);
+    // }
+
+    const host = 'ya-praktikum.tech';
+    fetch(`https://${host}/api/v2/chats/token/2171`, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'include',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const { token } = data;
+        const userId = 378050; // Александр
+        const chatId = 2171; // #затащимтретийспринт
+
+        const socket = new WebSocket(`wss://${host}/ws/chats/${userId}/${chatId}/${token}`);
+
+        setTimeout(() => socket.close(), 5000);
+
+        socket.addEventListener('open', () => {
+          console.log('Соединение установлено');
+
+          socket.send(JSON.stringify({
+            content: 'Не расслабляйся! Скоро финиш!',
+            type: 'message',
+          }));
+        });
+
+        socket.addEventListener('close', (event) => {
+          if (event.wasClean) {
+            console.log('Соединение закрыто чисто');
+          } else {
+            console.log('Обрыв соединения');
+          }
+
+          console.log(`Код: ${event.code} | Причина: ${event.reason}`);
+        });
+
+        socket.addEventListener('message', (event) => {
+          console.log('Получены данные', event.data);
+        });
+
+        socket.addEventListener('error', (event) => {
+          console.log('Ошибка', event.message);
+        });
+      });
   }
 
   async onLogout() {
     try {
-      await AuthController.logout().then(() => (new Router()).go('/signin'));
+      await AuthController.logout().then(() => {
+        store.clearUserInfo(); // Заметаем следы ;)
+        const router = new Router();
+        router.go('/signin');
+      });
     } catch (error) {
       alert(`Ошибка выполнения запроса /logout! ${error ? error.reason : ''}`);
     }
@@ -124,8 +172,12 @@ export class MessagesPage extends Block<IChatList> {
       .map((chat: IChatData) => {
         const avatar = chat.avatar === null ? '"https://help.alueducation.com/system/photos/360113168439/images.png"' : `"${chat.avatar}"`;
         const lastMessage = !chat.last_message?.content ? undefined : `"${chat.last_message?.content}"`;
-        const lastMessageTime = !chat.last_message?.time ? undefined : `"${chat.last_message?.time}"`;
         const unreadMessagesCount = !chat.unread_count ? undefined : `"${chat.unread_count}"`;
+
+        let lastMessageTime;
+        if (chat.last_message?.time) {
+          lastMessageTime = `"${new Date(chat.last_message?.time).toLocaleTimeString()}"`;
+        }
 
         return `
           {{{ Chat
@@ -144,7 +196,7 @@ export class MessagesPage extends Block<IChatList> {
   getChatTitle() {
     const chatId = store.getState()?.currentChatId;
     if (chatId) {
-      const chat = store.getState()?.chatList.filter((item: IChatData) => item.id === chatId);
+      const chat = store.getState()?.chatList.filter((item: IChatData) => String(item.id) === chatId);
 
       if (chat && chat.length > 0) {
         return chat[0].title;
@@ -205,7 +257,7 @@ export class MessagesPage extends Block<IChatList> {
                 <form class="send-message-block">
                     {{{ Input inputId="message" inputPlaceholder="Сообщение" inputType="text" inputName="message" regexp="^.*\\S.*$" }}}
                     <div class="button-container">
-                        {{{ Button buttonId="button-send-message" label="Отправить" onClick=onClick }}}
+                        ${currentChatTitle ? '{{{ Button buttonId="button-send-message" label="Отправить" onClick=onClick }}}' : ''}
                     </div>
                 </form>
             </div>

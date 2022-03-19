@@ -35,7 +35,7 @@ export interface IChatData {
 interface IStoreData {
   currentUser?: IUserData;
   chatList?: IChatData[];
-  currentChatId?: number;
+  currentChatId?: string;
 }
 
 class Store extends EventBus {
@@ -48,6 +48,12 @@ class Store extends EventBus {
   public set(path: keyof IStoreData, value: unknown) {
     set(this.state, path, value);
     this.emit(StoreEvents.Updated);
+  }
+
+  public clearUserInfo() {
+    this.set('currentUser', {});
+    this.set('chatList', []);
+    this.set('currentChatId', '');
   }
 }
 export const store = new Store();

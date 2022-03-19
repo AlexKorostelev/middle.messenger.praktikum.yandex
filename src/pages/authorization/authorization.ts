@@ -6,6 +6,7 @@ import AuthController from '../../controllers/AuthController';
 import { SignInData } from '../../api/AuthAPI';
 import Router from '../../common/Router';
 import ChatController from '../../controllers/ChatController';
+import { store } from '../../common/Store';
 
 export class AuthorizationPage extends Block<{ onClick: Function }> {
   constructor() {
@@ -14,7 +15,7 @@ export class AuthorizationPage extends Block<{ onClick: Function }> {
         if ((event.target as HTMLButtonElement).id === 'button-auth') {
           this.onSignIn();
         } else {
-          this.logout();
+          this.onLogout();
         }
       },
     });
@@ -37,9 +38,12 @@ export class AuthorizationPage extends Block<{ onClick: Function }> {
     }
   }
 
-  async logout() {
+  async onLogout() {
     try {
-      await AuthController.logout().then(() => alert('Выход пользователя выполнен успешно!'));
+      await AuthController.logout().then(() => {
+        store.clearUserInfo(); // Заметаем следы ;)
+        alert('Выход пользователя выполнен успешно!');
+      });
     } catch (error) {
       alert(`Ошибка выполнения запроса /logout! ${error ? error.reason : ''}`);
     }

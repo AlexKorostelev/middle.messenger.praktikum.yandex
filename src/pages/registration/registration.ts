@@ -7,6 +7,7 @@ import {
 import AuthController from '../../controllers/AuthController';
 import { SignUpData } from '../../api/AuthAPI';
 import Router from '../../common/Router';
+import { store } from '../../common/Store';
 
 export class RegistrationPage extends Block<{ onClick: Function }> {
   constructor() {
@@ -18,7 +19,10 @@ export class RegistrationPage extends Block<{ onClick: Function }> {
 
   async onLogout() {
     try {
-      await AuthController.logout().then(() => alert('Выход пользователя выполнен успешно!'));
+      await AuthController.logout().then(() => {
+        store.clearUserInfo(); // Заметаем следы ;)
+        alert('Выход пользователя выполнен успешно!');
+      });
     } catch (error) {
       alert(`Ошибка выполнения запроса /logout! ${error ? error.reason : ''}`);
     }

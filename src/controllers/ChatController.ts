@@ -22,7 +22,7 @@ class ChatController {
     store.set('chatList', chatList);
   }
 
-  async getChatUsers(chatId: number) {
+  async getChatUsers(chatId: string) {
     return this.api.getChatUsers(chatId);
   }
 

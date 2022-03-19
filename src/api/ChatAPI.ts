@@ -15,7 +15,7 @@ export default class ChatAPI extends BaseAPI {
     super('/chats');
   }
 
-  getChatUsers(chatId: number): Promise<IProfileData[]> {
+  getChatUsers(chatId: string): Promise<IProfileData[]> {
     return this.http.get(`/${chatId}/users`);
   }
 
