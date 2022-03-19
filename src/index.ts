@@ -11,7 +11,7 @@ import Message from './components/Message';
 import ErrorForm from './components/ErrorForm';
 import ProfilePage from './pages/profile';
 import MessagesPage from './pages/messages';
-import AuthController from "./controllers/AuthController";
+import AuthController from './controllers/AuthController';
 
 registerComponent(Button, 'Button');
 registerComponent(Input, 'Input');
@@ -33,9 +33,7 @@ router.use('/signin', AuthorizationPage)
  * Если ошибка - делаем редирект на страницу авторизации.
  */
 AuthController.fetchUser()
-  .then(() => {
-    router.go('/messages');
-  })
+  .then(() => router.go('/messages'))
   .catch(() => router.go('/signin'));
 
 router.start();

@@ -19,8 +19,6 @@ interface IChatList extends IChatListProps {
 
 export class MessagesPage extends Block<IChatList> {
   constructor(props: IChatListProps) {
-    console.log('MessagesPage props: ', props);
-
     super({
       ...props,
       onClick: (event: Event) => {
@@ -39,7 +37,6 @@ export class MessagesPage extends Block<IChatList> {
   }
 
   componentDidMount() {
-    super.componentDidMount();
     ChatController.getChats(); // Получаем список чатов и сетим его в стор
   }
 

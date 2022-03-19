@@ -32,7 +32,6 @@ export class ProfilePage extends Block<IProfile> {
   }
 
   componentDidMount() {
-    super.componentDidMount();
     AuthController.fetchUser();
   }
 

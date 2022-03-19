@@ -1,13 +1,12 @@
 import Block from './Block';
-import { ILinkProps } from '../components/Link/link';
 
-function isEqual(lhs: any, rhs: any) {
+export function isEqual(lhs, rhs) {
   return lhs === rhs;
 }
 
-function render(query: any, block: any) {
+function render(query, block) {
   const root = document.querySelector(query);
-  // root.innerHTML = '';
+  root.innerHTML = '';
   root.append(block.getContent());
   block.dispatchComponentDidMount();
 
@@ -55,7 +54,7 @@ class Route {
       return;
     }
 
-    this._block.show();
+    render(this._props.rootQuery, this._block);
   }
 }
 
@@ -88,24 +87,22 @@ class Router {
     return this;
   }
 
-  public start() {
-    window.onpopstate = (event) => {
-      this._onRoute(event.currentTarget.location.pathname);
+  public start = (): void => {
+    window.onpopstate = (event: PopStateEvent): void => {
+      this._onRoute((<Window>event.currentTarget).location.pathname);
     };
 
+    this.history.pushState('', '', window.location.pathname);
     this._onRoute(window.location.pathname);
-  }
+  };
 
   private _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
     if (!route) {
       return;
     }
-
-    if (this._currentRoute) {
-      // (this._currentRoute)
-      this._currentRoute.leave();
-    }
+    // console.log(route, this._currentRoute, 'routes');
+    this._currentRoute?.leave();
 
     this._currentRoute = route;
 
@@ -137,7 +134,7 @@ export interface WithRouterProps {
 }
 
 export function withRouter(Component: typeof Block) {
-  return class WithRouter extends Component<ILinkProps> {
+  return class WithRouter extends Component {
     public static componentName = Component.name;
 
     constructor(props: any) {

@@ -14,6 +14,11 @@ class AuthController {
 
   async signIn(data: SignInData) {
     await this.api.signIn(data);
+
+    // await this.fetchUser();
+    //
+    // const router = new Router();
+    // router.go('/messages');
   }
 
   async logout() {
