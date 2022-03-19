@@ -11,8 +11,17 @@ import Router from '../../common/Router';
 export class RegistrationPage extends Block<{ onClick: Function }> {
   constructor() {
     super({
-      onClick: () => this.onSignUp(),
+      onSignUp: () => this.onSignUp(),
+      onLogout: () => this.onLogout(),
     });
+  }
+
+  async onLogout() {
+    try {
+      await AuthController.logout().then(() => alert('Выход пользователя выполнен успешно!'));
+    } catch (error) {
+      alert(`Ошибка выполнения запроса /logout! ${error ? error.reason : ''}`);
+    }
   }
 
   async onSignUp() {
@@ -51,7 +60,8 @@ export class RegistrationPage extends Block<{ onClick: Function }> {
                         {{{ InputField labelText="Пароль:" inputId="password-reg" inputType="password" inputName="password" regexp="${REGEXP_PASSWORD}" }}}
                     </div>
                     <div class="button-block">
-                        {{{ Button buttonId="button-reg" label="Регистрация" onClick=onClick }}}
+                        {{{ Button buttonId="button-reg" label="Регистрация" onClick=onSignUp }}}
+                        {{{ Button buttonId="button-logout" label="Выход" onClick=onLogout }}}
                     </div>
                 </form>
             </div>

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import Block from './Block';
 
 export function isEqual(lhs, rhs) {
@@ -36,12 +37,6 @@ class Route {
     }
   }
 
-  leave() {
-    if (this._block) {
-      this._block.hide();
-    }
-  }
-
   match(pathname: string) {
     return isEqual(pathname, this._pathname);
   }
@@ -69,6 +64,7 @@ class Router {
 
   constructor() {
     if (Router.__instance) {
+      // eslint-disable-next-line no-constructor-return
       return Router.__instance;
     }
 
@@ -101,8 +97,6 @@ class Router {
     if (!route) {
       return;
     }
-    // console.log(route, this._currentRoute, 'routes');
-    this._currentRoute?.leave();
 
     this._currentRoute = route;
 

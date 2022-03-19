@@ -20,17 +20,6 @@ export class AuthorizationPage extends Block<{ onClick: Function }> {
     });
   }
 
-  componentDidMount() {
-    // /** Отправляем запрос для проверки валидности куки.
-    //  * Если запрос прошел успешно - то кука валидна, делаем редирект на страницу чатов.
-    //  * Если ошибка - делаем редирект на страницу авторизации.
-    //  */
-    // console.log('Auth CDM');
-    // const router = new Router();
-    // AuthController.fetchUser().then(() => router.go('/messages'));
-    // // .catch(() => router.go('/signin'));
-  }
-
   async onSignIn() {
     const data = validateInputs({ elementId: 'login-auth', regexp: REGEXP_LOGIN }, { elementId: 'password-auth', regexp: REGEXP_PASSWORD });
 
@@ -39,7 +28,8 @@ export class AuthorizationPage extends Block<{ onClick: Function }> {
         await AuthController.signIn(data as SignInData).then(() => {
           console.log('Авторизация выполнена успешно!');
           ChatController.getChats();
-          new Router().go('/messages');
+          const router = new Router();
+          router.go('/messages');
         });
       } catch (error) {
         alert(`Ошибка выполнения запроса авторизации! ${error ? error.reason : ''}`);

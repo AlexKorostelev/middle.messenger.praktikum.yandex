@@ -7,6 +7,7 @@ import Block from '../../common/Block';
 import UserController from '../../controllers/UserController';
 import { IProfileData } from '../../api/UserAPI';
 import AuthController from '../../controllers/AuthController';
+import Router from '../../common/Router';
 
 interface IProfileProps {
   id?: string;
@@ -32,7 +33,7 @@ export class ProfilePage extends Block<IProfile> {
   }
 
   componentDidMount() {
-    AuthController.fetchUser();
+    AuthController.fetchUser().catch(() => (new Router()).go('/signin'));
   }
 
   async onSaveProfile() {

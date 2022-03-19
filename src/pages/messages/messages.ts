@@ -37,7 +37,8 @@ export class MessagesPage extends Block<IChatList> {
   }
 
   componentDidMount() {
-    ChatController.getChats(); // Получаем список чатов и сетим его в стор
+    const router = new Router();
+    ChatController.getChats().catch(() => router.go('/signin'));
   }
 
   addUserToChat() {

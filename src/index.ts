@@ -11,7 +11,6 @@ import Message from './components/Message';
 import ErrorForm from './components/ErrorForm';
 import ProfilePage from './pages/profile';
 import MessagesPage from './pages/messages';
-import AuthController from './controllers/AuthController';
 
 registerComponent(Button, 'Button');
 registerComponent(Input, 'Input');
@@ -26,14 +25,7 @@ router.use('/signin', AuthorizationPage)
   .use('/signup', RegistrationPage)
   .use('/profile', ProfilePage)
   .use('/messages', MessagesPage)
-  .use('/error', ErrorForm);
-
-/** Отправляем запрос для проверки валидности куки.
- * Если запрос прошел успешно - то кука валидна, делаем редирект на страницу чатов.
- * Если ошибка - делаем редирект на страницу авторизации.
- */
-AuthController.fetchUser()
-  .then(() => router.go('/messages'))
-  .catch(() => router.go('/signin'));
+  .use('/error', ErrorForm)
+  .use('/', AuthorizationPage);
 
 router.start();
