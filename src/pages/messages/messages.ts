@@ -7,6 +7,7 @@ import { IChatData, store } from '../../common/Store';
 import AuthController from '../../controllers/AuthController';
 import Router from '../../common/Router';
 import ChatController from '../../controllers/ChatController';
+import { WS } from '../../common/Websockets';
 
 interface IChatListProps {
   chatList?: IChatData[];
@@ -93,54 +94,13 @@ export class MessagesPage extends Block<IChatList> {
   }
 
   onSendMessage() {
-    // const data = validateInputs({ elementId: 'message', regexp: REGEXP_MESSAGE });
-    // if (data) {
-    //   console.log('message sent!', data);
-    // }
+    const ws = new WS();
+    ws.connect(2138, 378050);
 
-    const host = 'ya-praktikum.tech';
-    fetch(`https://${host}/api/v2/chats/token/2171`, {
-      method: 'POST',
-      mode: 'cors',
-      credentials: 'include',
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        const { token } = data;
-        const userId = 378050; // Александр
-        const chatId = 2171; // #затащимтретийспринт
-
-        const socket = new WebSocket(`wss://${host}/ws/chats/${userId}/${chatId}/${token}`);
-
-        setTimeout(() => socket.close(), 5000);
-
-        socket.addEventListener('open', () => {
-          console.log('Соединение установлено');
-
-          socket.send(JSON.stringify({
-            content: 'Не расслабляйся! Скоро финиш!',
-            type: 'message',
-          }));
-        });
-
-        socket.addEventListener('close', (event) => {
-          if (event.wasClean) {
-            console.log('Соединение закрыто чисто');
-          } else {
-            console.log('Обрыв соединения');
-          }
-
-          console.log(`Код: ${event.code} | Причина: ${event.reason}`);
-        });
-
-        socket.addEventListener('message', (event) => {
-          console.log('Получены данные', event.data);
-        });
-
-        socket.addEventListener('error', (event) => {
-          console.log('Ошибка', event.message);
-        });
-      });
+    const data = validateInputs({ elementId: 'message', regexp: REGEXP_MESSAGE });
+    if (data) {
+      console.log('message sent!', data);
+    }
   }
 
   async onLogout() {
