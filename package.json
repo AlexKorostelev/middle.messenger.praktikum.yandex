@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "parcel --no-cache ./src/index.html",
     "build": "parcel build src/index.html",
-    "start": "npm run build && node ./src/server.js"
+    "start": "npm run build && node ./src/server.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,7 @@
   "homepage": "https://github.com/AlexKorostelev/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "1.0.9",
-    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
+    "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
     "@babel/preset-typescript": "7.16.7",
     "@babel/register": "7.17.7",
     "@parcel/config-default": "2.3.0",
