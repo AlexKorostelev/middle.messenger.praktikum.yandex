@@ -47,6 +47,8 @@ export const validateInputs = (...items: IValidationInput[]) => {
     // eslint-disable-next-line no-console
     return inputsValidationResults.reduce((acc, cur) => Object.assign(acc, { [cur.inputName]: cur.inputValue }), {});
   }
+
+  return undefined;
 };
 
 export const getParentDataSetParam = (element: HTMLElement, className: string, dataSetParam: string): string | undefined => {
@@ -61,4 +63,16 @@ export const getParentDataSetParam = (element: HTMLElement, className: string, d
   }
 
   return copyElement.dataset[dataSetParam];
+};
+
+export const scrollToLastMessage = () => {
+  setTimeout(() => {
+    const collection = document.getElementsByClassName('messages-container');
+    if (collection.length) {
+      collection[0].scrollTo({
+        top: collection[0].scrollHeight,
+        behavior: 'smooth',
+      });
+    }
+  }, 200);
 };

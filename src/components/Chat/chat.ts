@@ -1,9 +1,10 @@
 // import template from './button.hbs';
 import Block from '../../common/Block';
 import '../../pages/messages/messages.less';
-import { getParentDataSetParam } from '../../common/utils';
+import { getParentDataSetParam, scrollToLastMessage } from '../../common/utils';
 import { store } from '../../common/Store';
 import ChatController from '../../controllers/ChatController';
+import { ws } from '../../index';
 
 export interface IChatProps {
   id: string;
@@ -37,6 +38,9 @@ export class Chat extends Block<IChat> {
       const chatUsers = await ChatController.getChatUsers(id);
       // eslint-disable-next-line no-console
       console.log(`Чат ${id}, пользователи: `, chatUsers);
+      ws.connect(); // Создаем подключение по Websocket
+    } else {
+      scrollToLastMessage();
     }
   }
 

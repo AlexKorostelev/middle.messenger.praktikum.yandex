@@ -1,13 +1,14 @@
 import Block from '../../common/Block';
 import './messages.less';
-import { validateInputs } from '../../common/utils';
+import { scrollToLastMessage, validateInputs } from '../../common/utils';
 import { REGEXP_MESSAGE } from '../../common/const';
 import { IMessageProps } from '../../components/Message/message';
 import { IChatData, store } from '../../common/Store';
 import AuthController from '../../controllers/AuthController';
 import Router from '../../common/Router';
 import ChatController from '../../controllers/ChatController';
-import { WS } from '../../common/Websockets';
+// eslint-disable-next-line import/no-cycle
+import { ws } from '../../index';
 
 interface IChatListProps {
   chatList?: IChatData[];
@@ -39,7 +40,11 @@ export class MessagesPage extends Block<IChatList> {
 
   componentDidMount() {
     const router = new Router();
-    ChatController.getChats().catch(() => router.go('/signin'));
+    ChatController.getChats().then(() => {
+      AuthController.fetchUser(); // Подтягиваем информацию о юзере (нам нужен userID для работы с websocket);
+    }).catch(() => {
+      router.go('/signin');
+    });
   }
 
   addUserToChat() {
@@ -94,12 +99,10 @@ export class MessagesPage extends Block<IChatList> {
   }
 
   onSendMessage() {
-    const ws = new WS();
-    ws.connect(2138, 378050);
-
-    const data = validateInputs({ elementId: 'message', regexp: REGEXP_MESSAGE });
+    const data = validateInputs({ elementId: 'message', regexp: REGEXP_MESSAGE }) as { message: string } | undefined;
     if (data) {
-      console.log('message sent!', data);
+      ws.sendMessage(data.message);
+      scrollToLastMessage();
     }
   }
 

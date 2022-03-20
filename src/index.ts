@@ -10,7 +10,9 @@ import Chat from './components/Chat';
 import Message from './components/Message';
 import ErrorForm from './components/ErrorForm';
 import ProfilePage from './pages/profile';
+// eslint-disable-next-line import/no-cycle
 import MessagesPage from './pages/messages';
+import { WS } from './common/Websockets';
 
 registerComponent(Button, 'Button');
 registerComponent(Input, 'Input');
@@ -20,6 +22,7 @@ registerComponent(Chat, 'Chat');
 registerComponent(Message, 'Message');
 
 const router = new Router();
+export const ws = new WS();
 
 router.use('/signin', AuthorizationPage)
   .use('/signup', RegistrationPage)

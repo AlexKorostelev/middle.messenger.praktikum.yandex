@@ -2,6 +2,7 @@
 import EventBus from './EventBus';
 import { Indexed, isEqual, set } from './helpers';
 import Block from './Block';
+import { IMessageProps } from '../components/Message/message';
 
 export enum StoreEvents {
   Updated = 'updated',
@@ -36,6 +37,7 @@ interface IStoreData {
   currentUser?: IUserData;
   chatList?: IChatData[];
   currentChatId?: string;
+  messageList: IMessageProps[];
 }
 
 class Store extends EventBus {
@@ -54,6 +56,7 @@ class Store extends EventBus {
     this.set('currentUser', {});
     this.set('chatList', []);
     this.set('currentChatId', '');
+    this.set('messageList', []);
   }
 }
 export const store = new Store();
