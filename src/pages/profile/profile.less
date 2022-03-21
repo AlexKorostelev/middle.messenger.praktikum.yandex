@@ -5,23 +5,28 @@ body {
   padding: 0;
 }
 
-.form-container {
+.page-container {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  .authorisation-form {
-    width: 280px;
-    height: 380px;
+  .profile-settings {
+    display: flex;
+    border: 1px solid @border-color;
+    border-radius: 20px;
+    box-shadow: 2px 2px 3px @border-color;
     background: @menu-color;
+  }
+
+  .profile-form {
+    width: 280px;
+    height: 580px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid @border-color;
-    border-radius: 20px;
-    box-shadow: 2px 2px 3px @border-color;
+    border-right: 1px solid @border-color;
 
     &__title {
       font-family: @baseFontFamily;
@@ -31,13 +36,13 @@ body {
     &__form {
       margin: 0;
     }
+  }
 
-    .input-block {
-      display: flex;
-      flex-direction: column;
-      width: 220px;
-      margin-bottom: 70px;
-    }
+  .input-block {
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    margin-bottom: 10px;
   }
 
   .nav-block {
@@ -63,7 +68,7 @@ body {
     width: 220px;
     margin-bottom: 20px;
 
-    .button-block__button {
+    &__button {
       margin-bottom: 5px;
       height: @baseElementHeight;
       font-family: @baseFontFamily;
@@ -75,6 +80,19 @@ body {
         background: @button-hovered-color;
         cursor: pointer;
       }
+    }
+  }
+
+  .avatar {
+    width: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    input {
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
     }
   }
 }
