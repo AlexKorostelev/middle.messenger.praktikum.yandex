@@ -1,13 +1,14 @@
 # Веб-приложение для обмена сообщениями.
-### Ссылка на ПР: [https://github.com/AlexKorostelev/middle.messenger.praktikum.yandex/pull/2](https://github.com/AlexKorostelev/middle.messenger.praktikum.yandex/pull/2 "Ссылка на ПР")
-### Ссылка на главную страницу: [https://alex-korostelev-messenger.netlify.app/index.html](https://alex-korostelev-messenger.netlify.app/index.html "Ссылка на страничку приложения")
-### URL адреса страниц:
-* [Список чатов](https://alex-korostelev-messenger.netlify.app/pages/messages/index.html "Ссылка на страничку списка чатов")
-* [Авторизация](https://alex-korostelev-messenger.netlify.app/pages/authorization/index.html "Ссылка на страничку авторизации")
-* [Регистрация](https://alex-korostelev-messenger.netlify.app/pages/registration/index.html "Ссылка на страничку регистрации")
-* [Настройки профиля](https://alex-korostelev-messenger.netlify.app/pages/profile/index.html "Ссылка на страничку настроек профиля")
-* [Настройки профиля (смена пароля)](https://alex-korostelev-messenger.netlify.app/pages/password/index.html "Ссылка на страничку смена пароля")
-* [Страничка ошибки](https://alex-korostelev-messenger.netlify.app/pages/error/index.html "Ссылка на страничку ошибки")
+### Ссылка на ПР: [https://github.com/AlexKorostelev/middle.messenger.praktikum.yandex/pull/3](https://github.com/AlexKorostelev/middle.messenger.praktikum.yandex/pull/3 "Ссылка на ПР")
+### Ссылка на главную страницу: [https://alex-korostelev-messenger.netlify.app/](https://alex-korostelev-messenger.netlify.app/ "Ссылка на страничку приложения")
+### Добавлена работа с Websocket:
+* Переключение между чатами
+* Подгрузка последних сообщений чата
+* Возможнось добавления / удаления пользователей из чата
+* Возможность создания / удаления чата
+
+ну и конечно ... возможность обмена сообщениями в реальном времени!
+
 ### В качестве дизайн-макета использовались [шаблоны от Яндекс](https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1 "Ссылка на макеты Figma") и веб-приложение Телеграмм.
 ### Используемые технологии:
 * Шаблонизатор handlebars
@@ -33,3 +34,4 @@ npm run dev
 ```
 npm run build
 ```
+
