@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { validateInput } from '../src/common/utils';
-import { REGEXP_LOGIN } from '../src/common/const';
+import { validateInput } from '../utils';
+import { REGEXP_LOGIN } from '../const';
 
 const jsdom = require('jsdom');
 
