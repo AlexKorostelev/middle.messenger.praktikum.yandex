@@ -217,7 +217,7 @@ export class MessagesPage extends Block<IChatList> {
                     ${this.messageListToJSX()}
                 </div>
 
-                <form class="send-message-block">
+                <form class="send-message-block" onSubmit="return false;">
                     {{{ Input inputId="message" inputPlaceholder="Сообщение" inputType="text" inputName="message" regexp="^.*\\S.*$" }}}
                     <div class="button-container">
                         ${currentChatTitle ? '{{{ Button buttonId="button-send-message" label="Отправить" onClick=onClick }}}' : ''}
