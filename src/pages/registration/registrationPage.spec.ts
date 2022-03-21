@@ -7,7 +7,7 @@ import { RegistrationPage } from './registration';
 const chai = require('chai');
 chai.use(require('chai-dom'));
 
-describe('Тест компонента AuthorizationPage', () => {
+describe('Тест компонента RegistrationPage', () => {
   registerComponent(Button, 'Button');
   registerComponent(Input, 'Input');
   registerComponent(InputField, 'InputField');
