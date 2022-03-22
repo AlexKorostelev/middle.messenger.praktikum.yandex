@@ -1,14 +1,16 @@
 // eslint-disable-next-line max-classes-per-file
 import EventBus from './EventBus';
-import { Indexed, isEqual, set } from './helpers';
 import Block from './Block';
 import { IMessageProps } from '../components/Message/message';
+import { Indexed } from './helpers/merge';
+import { set } from './helpers/set';
+import { isEqual } from './helpers/isEqual';
 
 export enum StoreEvents {
   Updated = 'updated',
 }
 
-interface IUserData {
+export interface IUserData {
   id: number;
   first_name: string;
   second_name: string;

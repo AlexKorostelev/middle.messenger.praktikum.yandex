@@ -34,7 +34,7 @@ describe('Тест компонента AuthorizationPage', () => {
     chai.expect(authPage.getContent()?.querySelectorAll('label')).to.have.text(['Логин:', 'Пароль:']);
   });
 
-  it('На форме имеется 2 элемента button c текстами "Авторизация:" и "Выход:"', () => {
-    chai.expect(authPage.getContent()?.querySelectorAll('button')).to.have.text(['\n        Авторизация\n      ', '\n        Выход\n      ']);
+  it('На форме имеется 1 элемент button c текстом "Авторизация:"', () => {
+    chai.expect(authPage.getContent()?.querySelectorAll('button')).to.have.text(['\n        Авторизация\n      ']);
   });
 });

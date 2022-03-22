@@ -16,8 +16,9 @@ export default class HTTPTransport {
 
   protected endpoint: string;
 
-  constructor(endpoint: string) {
-    this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
+  constructor(endpoint: string, baseURL?: string) {
+    this.endpoint = `${baseURL || HTTPTransport.API_URL}${endpoint}`;
+    console.log('>>>>>', this.endpoint);
   }
 
   public get<Response>(path = '/'): Promise<Response> {
