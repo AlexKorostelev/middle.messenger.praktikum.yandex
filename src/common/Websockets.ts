@@ -1,5 +1,6 @@
 import { store } from './Store';
 import { scrollToLastMessage } from './utils';
+import HTTPTransport from './HTTPTransport';
 
 export class WS {
   private socket: WebSocket;
@@ -10,7 +11,7 @@ export class WS {
 
   private userId?: number;
 
-  private timerId?: number;
+  private timerId?: NodeJS.Timer;
 
   private isConnectionOK: boolean;
 
@@ -104,13 +105,10 @@ export class WS {
       return;
     }
 
-    fetch(`https://${this.host}/api/v2/chats/token/${chatId}`, {
-      method: 'POST',
-      mode: 'cors',
-      credentials: 'include',
-    })
-      .then((response) => response.json())
-      .then((data: { token: string }) => {
+    const http = new HTTPTransport(`/chats/token/${chatId}`);
+    http
+      .post<{ token: string }>('', { mode: 'cors', credentials: 'include' })
+      .then((data) => {
         /** Если до этого было соденинение по WS с другим чатом
          *  то удаляем старые обработчики событий */
         if (this.chatId !== undefined) {

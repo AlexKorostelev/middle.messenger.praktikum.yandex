@@ -1,6 +1,6 @@
 import Block from '../../common/Block';
 import '../../common/styles/styles.less';
-import { WithRouterProps } from '../../common/Router';
+import { WithRouterProps } from '../../common/withRouter';
 
 export interface ILinkProps extends WithRouterProps {
   to: string;

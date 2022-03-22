@@ -33,10 +33,10 @@ export class ProfilePage extends Block<IProfile> {
   }
 
   componentDidMount() {
-    AuthController.fetchUser().catch(() => (new Router()).go('/signin'));
+    AuthController.fetchUser().catch(() => new Router().go('/signin'));
   }
 
-  async onSaveProfile() {
+  onSaveProfile() {
     const data = validateInputs(
       { elementId: 'email-profile', regexp: REGEXP_EMAIL },
       { elementId: 'login-profile', regexp: REGEXP_LOGIN },
@@ -46,11 +46,9 @@ export class ProfilePage extends Block<IProfile> {
       { elementId: 'phone-profile', regexp: REGEXP_PHONE },
     );
     if (data) {
-      try {
-        await UserController.updateProfile(data as IProfileData).then(() => alert('Профиль успешно обновлен!'));
-      } catch (error) {
-        alert(`Ошибка выполнения запроса обновления профиля! ${error ? error.reason : ''}`);
-      }
+      UserController.updateProfile(data as IProfileData)
+        .then(() => alert('Профиль успешно обновлен!'))
+        .catch((error) => alert(`Ошибка выполнения запроса обновления профиля! ${error ? error.reason : ''}`));
     }
   }
 

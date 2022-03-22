@@ -6,46 +6,33 @@ import AuthController from '../../controllers/AuthController';
 import { SignInData } from '../../api/AuthAPI';
 import Router from '../../common/Router';
 import ChatController from '../../controllers/ChatController';
-import { store } from '../../common/Store';
 
 export class AuthorizationPage extends Block<{ onClick: Function }> {
   constructor() {
     super({
-      onClick: (event: Event) => {
-        if ((event.target as HTMLButtonElement).id === 'button-auth') {
-          this.onSignIn();
-        } else {
-          this.onLogout();
-        }
-      },
+      onClick: () => this.onSignIn(),
     });
   }
 
-  async onSignIn() {
+  componentDidMount() {
+    AuthController.fetchUser().then(() => {
+      const router = new Router();
+      router.go('/messages');
+    });
+  }
+
+  onSignIn() {
     const data = validateInputs({ elementId: 'login-auth', regexp: REGEXP_LOGIN }, { elementId: 'password-auth', regexp: REGEXP_PASSWORD });
 
     if (data) {
-      try {
-        await AuthController.signIn(data as SignInData).then(() => {
+      AuthController.signIn(data as SignInData)
+        .then(() => {
           console.log('Авторизация выполнена успешно!');
           ChatController.getChats();
           const router = new Router();
           router.go('/messages');
-        });
-      } catch (error) {
-        alert(`Ошибка выполнения запроса авторизации! ${error ? error.reason : ''}`);
-      }
-    }
-  }
-
-  async onLogout() {
-    try {
-      await AuthController.logout().then(() => {
-        store.clearUserInfo(); // Заметаем следы ;)
-        alert('Выход пользователя выполнен успешно!');
-      });
-    } catch (error) {
-      alert(`Ошибка выполнения запроса /logout! ${error ? error.reason : ''}`);
+        })
+        .catch((error) => alert(`Ошибка выполнения запроса авторизации! ${error ? error.reason : ''}`));
     }
   }
 
@@ -66,7 +53,6 @@ export class AuthorizationPage extends Block<{ onClick: Function }> {
             </div>
             <div class="button-block">
               {{{ Button buttonId="button-auth" label="Авторизация" onClick=onClick }}}
-              {{{ Button buttonId="button-logout" label="Выход" onClick=onClick }}}
             </div>
           </form>
         </div>

@@ -85,17 +85,16 @@ export class MessagesPage extends Block<IChatList> {
 
     if (result) {
       ChatController.deleteChat(store.getState().currentChatId)
-        .then(() => ChatController.getChats())
+        .then(() => {
+          store.set('messageList', []);
+          ChatController.getChats();
+        })
         .catch((error) => alert(`Ошибка выполнения запроса! ${error ? error.reason : ''}`));
     }
   }
 
-  async getProfileInfo() {
-    try {
-      await AuthController.fetchUser();
-    } catch {
-      alert('Ошибка запроса данных пользователя!');
-    }
+  getProfileInfo() {
+    AuthController.fetchUser().catch((error) => alert(`Ошибка запроса данных пользователя! ${error ? error.reason : ''}`));
   }
 
   onSendMessage() {
@@ -106,16 +105,12 @@ export class MessagesPage extends Block<IChatList> {
     }
   }
 
-  async onLogout() {
-    try {
-      await AuthController.logout().then(() => {
-        store.clearUserInfo(); // Заметаем следы ;)
-        const router = new Router();
-        router.go('/signin');
-      });
-    } catch (error) {
-      alert(`Ошибка выполнения запроса /logout! ${error ? error.reason : ''}`);
-    }
+  onLogout() {
+    AuthController.logout().then(() => {
+      store.clearUserInfo(); // Заметаем следы ;)
+      const router = new Router();
+      router.go('/signin');
+    }).catch((error) => alert(`Ошибка выполнения запроса /logout! ${error ? error.reason : ''}`));
   }
 
   messageListToJSX() {

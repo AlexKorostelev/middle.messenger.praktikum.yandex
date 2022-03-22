@@ -7,25 +7,12 @@ import {
 import AuthController from '../../controllers/AuthController';
 import { SignUpData } from '../../api/AuthAPI';
 import Router from '../../common/Router';
-import { store } from '../../common/Store';
 
 export class RegistrationPage extends Block<{ onClick: Function }> {
   constructor() {
     super({
       onSignUp: () => this.onSignUp(),
-      onLogout: () => this.onLogout(),
     });
-  }
-
-  async onLogout() {
-    try {
-      await AuthController.logout().then(() => {
-        store.clearUserInfo(); // Заметаем следы ;)
-        alert('Выход пользователя выполнен успешно!');
-      });
-    } catch (error) {
-      alert(`Ошибка выполнения запроса /logout! ${error ? error.reason : ''}`);
-    }
   }
 
   async onSignUp() {
@@ -40,11 +27,9 @@ export class RegistrationPage extends Block<{ onClick: Function }> {
 
     // Если все поля заполнены и провалидированы - отправляем запрос
     if (data) {
-      try {
-        await AuthController.signUp(data as SignUpData).then(() => (new Router()).go('/messages'));
-      } catch (error) {
-        alert(`Ошибка выполнения запроса регистрации! ${error ? error.reason : ''}`);
-      }
+      AuthController.signUp(data as SignUpData)
+        .then(() => new Router().go('/messages'))
+        .catch((error) => alert(`Ошибка выполнения запроса регистрации! ${error ? error.reason : ''}`));
     }
   }
 
@@ -65,7 +50,6 @@ export class RegistrationPage extends Block<{ onClick: Function }> {
                     </div>
                     <div class="button-block">
                         {{{ Button buttonId="button-reg" label="Регистрация" onClick=onSignUp }}}
-                        {{{ Button buttonId="button-logout" label="Выход" onClick=onLogout }}}
                     </div>
                 </form>
             </div>

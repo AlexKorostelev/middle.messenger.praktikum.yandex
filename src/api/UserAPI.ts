@@ -1,4 +1,4 @@
-import BaseAPI from './BaseAPI';
+import HTTPTransport from '../common/HTTPTransport';
 
 export interface IProfileData {
   first_name: 'string';
@@ -9,18 +9,14 @@ export interface IProfileData {
   phone: 'string';
 }
 
-export default class UserAPI extends BaseAPI {
-  constructor() {
-    super('/user');
+export default class UserAPI {
+  protected http: HTTPTransport;
+
+  protected constructor() {
+    this.http = new HTTPTransport('/user');
   }
 
-  create = undefined;
-
-  read = undefined;
-
-  update(profile: IProfileData): Promise<unknown> {
+  update(profile: IProfileData): Promise<string> {
     return this.http.put('/profile', profile);
   }
-
-  delete = undefined;
 }

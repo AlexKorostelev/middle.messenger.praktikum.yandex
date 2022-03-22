@@ -34,7 +34,7 @@ describe('Тест компонента RegistrationPage', () => {
     chai.expect(registrationPage.getContent()?.querySelectorAll('label')).to.have.text(['Почта:', 'Логин:', 'Имя:', 'Фамилия:', 'Телефон:', 'Пароль:']);
   });
 
-  it('На форме имеется 2 элемента button c текстами "Регистрация:" и "Выход:"', () => {
-    chai.expect(registrationPage.getContent()?.querySelectorAll('button')).to.have.text(['\n        Регистрация\n      ', '\n        Выход\n      ']);
+  it('На форме имеется 1 элемента button c текстом "Регистрация:"', () => {
+    chai.expect(registrationPage.getContent()?.querySelectorAll('button')).to.have.text(['\n        Регистрация\n      ']);
   });
 });

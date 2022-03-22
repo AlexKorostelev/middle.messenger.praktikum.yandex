@@ -1,4 +1,6 @@
-import BaseAPI from './BaseAPI';
+import { IUserData } from '../common/Store';
+
+import HTTPTransport from '../common/HTTPTransport';
 
 export interface SignUpData {
   first_name: string;
@@ -14,30 +16,26 @@ export interface SignInData {
   password: string;
 }
 
-export default class AuthAPI extends BaseAPI {
-  constructor() {
-    super('/auth');
+export default class AuthAPI {
+  protected http: HTTPTransport;
+
+  protected constructor() {
+    this.http = new HTTPTransport('/auth');
   }
 
-  signUp(data: SignUpData): Promise<unknown> {
+  signUp(data: SignUpData): Promise<string> {
     return this.http.post('/signup', data);
   }
 
-  signIn(data: SignInData): Promise<unknown> {
+  signIn(data: SignInData): Promise<string> {
     return this.http.post('/signin', data);
   }
 
-  logout(): Promise<unknown> {
+  logout(): Promise<string> {
     return this.http.post('/logout');
   }
 
-  read(): Promise<unknown> {
+  read(): Promise<IUserData> {
     return this.http.get('/user');
   }
-
-  update = undefined;
-
-  create = undefined;
-
-  delete = undefined;
 }
