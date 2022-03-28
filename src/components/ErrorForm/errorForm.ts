@@ -6,7 +6,7 @@ interface IButtonProps {
   errorPicturePath: string;
 }
 
-export class ErrorForm extends Block<IButtonProps> {
+export class ErrorForm extends Block {
   constructor({ errorNumber, errorPicturePath }: IButtonProps) {
     super({
       errorNumber,

@@ -15,11 +15,7 @@ interface IChatListProps {
   messageList?: IMessageProps[];
 }
 
-interface IChatList extends IChatListProps {
-  onClick: Function;
-}
-
-export class MessagesPage extends Block<IChatList> {
+export class MessagesPage extends Block {
   constructor(props: IChatListProps) {
     super({
       ...props,
@@ -114,19 +110,21 @@ export class MessagesPage extends Block<IChatList> {
   }
 
   messageListToJSX() {
-    if (!this.props.messageList) {
+    const messageList = this.props.messageList as unknown as IMessageProps[];
+    if (!messageList) {
       return '';
     }
 
-    return this.props.messageList.map((message: IMessageProps) => `{{{ Message isMyMessage=${message.isMyMessage} messageText="${message.messageText}" }}}`).join('');
+    return messageList.map((message: IMessageProps) => `{{{ Message isMyMessage=${message.isMyMessage} messageText="${message.messageText}" }}}`).join('');
   }
 
   chatListToJSX() {
-    if (!this.props.chatList) {
+    const chatList = this.props.messageList as unknown as IChatData[];
+    if (!chatList) {
       return '';
     }
 
-    return this.props.chatList
+    return chatList
       .map((chat: IChatData) => {
         const avatar = chat.avatar === null ? '"https://help.alueducation.com/system/photos/360113168439/images.png"' : `"${chat.avatar}"`;
         const lastMessage = !chat.last_message?.content ? undefined : `"${chat.last_message?.content}"`;

@@ -1,6 +1,6 @@
 // eslint-disable-next-line max-classes-per-file
 import EventBus from './EventBus';
-import Block from './Block';
+import Block, { TProps } from './Block';
 import { IMessageProps } from '../components/Message/message';
 import { Indexed } from './helpers/merge';
 import { set } from './helpers/set';
@@ -67,16 +67,16 @@ export const withStore = (mapStateToProps: (state: IStoreData) => Record<string,
   let state: Record<string, unknown>;
 
   return class extends Component {
-    constructor(props) {
-      state = mapStateToProps(store.getState());
+    constructor(props: any) {
+      state = mapStateToProps(store.getState() as IStoreData);
 
       super({ ...props, ...state });
 
       store.on(StoreEvents.Updated, () => {
-        const newState = mapStateToProps(store.getState());
+        const newState = mapStateToProps(store.getState() as IStoreData);
 
         if (!isEqual(state, newState)) {
-          this.setProps({ ...newState });
+          this.setProps({ ...newState } as TProps);
         }
       });
     }

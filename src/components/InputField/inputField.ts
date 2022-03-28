@@ -14,7 +14,7 @@ interface IInputField {
   regexp: string;
 }
 
-export class InputField extends Block<IInputField> {
+export class InputField extends Block {
   constructor(props: IInputField) {
     super({
       ...props,

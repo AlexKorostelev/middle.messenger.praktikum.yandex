@@ -2,7 +2,9 @@ import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
 import EventBus from './EventBus';
 
-class Block<Props extends {}> {
+export type TProps = Record<string, string | Function>;
+
+class Block {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -14,7 +16,7 @@ class Block<Props extends {}> {
 
   private _element: HTMLElement | null = null;
 
-  protected props: Props;
+  protected props: Record<string, string | Function>;
 
   protected children: Record<string, any>;
 
@@ -75,18 +77,19 @@ class Block<Props extends {}> {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  private _componentDidUpdate(oldProps: Props, newProps: Props) {
+  private _componentDidUpdate(oldProps: TProps, newProps: TProps) {
     if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  componentDidUpdate(oldProps: Props, newProps: Props) {
+  componentDidUpdate(oldProps: TProps, newProps: TProps) {
+    console.log(oldProps, newProps);
+
     return true;
   }
 
-  setProps = (nextProps: Props) => {
+  setProps = (nextProps: TProps) => {
     if (!nextProps) {
       return;
     }
@@ -119,7 +122,7 @@ class Block<Props extends {}> {
     return this.element;
   }
 
-  private _makePropsProxy(props: Props) {
+  private _makePropsProxy(props: TProps) {
     return new Proxy(props, {
       get: (target: any, prop: string) => {
         const value = target[prop];
@@ -143,23 +146,23 @@ class Block<Props extends {}> {
   }
 
   private _addEvents() {
-    const { events } = this.props as Props;
+    const { events } = this.props as TProps;
 
     if (!events) {
       return;
     }
-    Object.entries(events as Record<string, () => void>).forEach(([event, listener]) => {
+    Object.entries(events).forEach(([event, listener]) => {
       this._element!.addEventListener(event, listener);
     });
   }
 
   private _removeEvents() {
-    const { events } = this.props as Props;
+    const { events } = this.props as TProps;
 
     if (!events || !this._element) {
       return;
     }
-    Object.entries(events as Record<string, () => void>).forEach(([event, listener]) => {
+    Object.entries(events).forEach(([event, listener]) => {
       this._element!.removeEventListener(event, listener);
     });
   }

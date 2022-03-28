@@ -7,7 +7,7 @@ import { SignInData } from '../../api/AuthAPI';
 import Router from '../../common/Router';
 import ChatController from '../../controllers/ChatController';
 
-export class AuthorizationPage extends Block<{ onClick: Function }> {
+export class AuthorizationPage extends Block {
   constructor() {
     super({
       onClick: () => this.onSignIn(),

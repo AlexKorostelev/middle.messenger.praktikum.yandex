@@ -8,7 +8,7 @@ import AuthController from '../../controllers/AuthController';
 import { SignUpData } from '../../api/AuthAPI';
 import Router from '../../common/Router';
 
-export class RegistrationPage extends Block<{ onClick: Function }> {
+export class RegistrationPage extends Block {
   constructor() {
     super({
       onSignUp: () => this.onSignUp(),

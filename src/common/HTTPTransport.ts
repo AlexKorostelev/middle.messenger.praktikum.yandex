@@ -18,7 +18,6 @@ export default class HTTPTransport {
 
   constructor(endpoint: string, baseURL?: string) {
     this.endpoint = `${baseURL || HTTPTransport.API_URL}${endpoint}`;
-    console.log('>>>>>', this.endpoint);
   }
 
   public get<Response>(path = '/'): Promise<Response> {
@@ -71,8 +70,11 @@ export default class HTTPTransport {
         }
       };
 
+      // eslint-disable-next-line prefer-promise-reject-errors
       xhr.onabort = () => reject({ reason: 'abort' });
+      // eslint-disable-next-line prefer-promise-reject-errors
       xhr.onerror = () => reject({ reason: 'network error' });
+      // eslint-disable-next-line prefer-promise-reject-errors
       xhr.ontimeout = () => reject({ reason: 'timeout' });
 
       xhr.setRequestHeader('Content-Type', 'application/json');

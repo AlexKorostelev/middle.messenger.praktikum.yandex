@@ -20,11 +20,7 @@ interface IProfileProps {
   avatar?: string;
 }
 
-interface IProfile extends IProfileProps {
-  onClick: Function;
-}
-
-export class ProfilePage extends Block<IProfile> {
+export class ProfilePage extends Block {
   constructor(props: IProfileProps) {
     super({
       ...props,

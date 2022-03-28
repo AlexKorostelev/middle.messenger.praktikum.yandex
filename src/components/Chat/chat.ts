@@ -15,13 +15,7 @@ export interface IChatProps {
   avatar: string;
 }
 
-interface IChat extends IChatProps {
-  events: {
-    click: Function;
-  };
-}
-
-export class Chat extends Block<IChat> {
+export class Chat extends Block {
   constructor(props: IChatProps) {
     super({
       ...props,
