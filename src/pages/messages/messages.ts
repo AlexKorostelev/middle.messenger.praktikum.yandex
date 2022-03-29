@@ -119,7 +119,7 @@ export class MessagesPage extends Block {
   }
 
   chatListToJSX() {
-    const chatList = this.props.messageList as unknown as IChatData[];
+    const { chatList } = store.getState();
     if (!chatList) {
       return '';
     }

@@ -1,16 +1,24 @@
 // webpack.config.js
-
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: './index.ts',
+  entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
+  devServer: {
+    port: 9001,
+    historyApiFallback: true,
+  },
   resolve: {
     extensions: ['.ts', '.js', '.json', '.hbs', '.less'],
+    alias: {
+      handlebars: 'handlebars/dist/handlebars.js',
+    },
   },
   module: {
     rules: [
@@ -26,6 +34,20 @@ module.exports = {
         ],
         exclude: /(node_modules)/,
       },
+      {
+        test: /\.less$/i,
+        use: ['style-loader', 'css-loader', 'less-loader'],
+      },
+      {
+        test: /\.hbs$/,
+        loader: 'handlebars-loader',
+      },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+    }),
+    new CleanWebpackPlugin(),
+  ],
 };
