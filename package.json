@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node ./node_modules/webpack/bin/webpack.js",
     "start": "npm run build && node ./src/server.js",
-    "watch": "webpack-dev-server",
+    "serve": "webpack serve",
     "test": "cross-env NODE_ENV=test mocha --require test/babel-register.js --require test/mock.js"
   },
   "repository": {
