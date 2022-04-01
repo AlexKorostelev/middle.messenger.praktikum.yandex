@@ -17,6 +17,7 @@ export class WS {
 
   private onOpenConnection() {
     this.isConnectionOK = true;
+    // eslint-disable-next-line no-console
     console.log('Соединение установлено');
 
     this.getLastMessages();
@@ -34,6 +35,7 @@ export class WS {
   }
 
   private onCloseConnection(event: CloseEvent) {
+    // eslint-disable-next-line no-console
     console.log(event.wasClean ? 'Соединение закрыто чисто' : 'Обрыв соединения');
     this.isConnectionOK = false;
 
@@ -44,6 +46,7 @@ export class WS {
   }
 
   private onReceiveMessage(event: MessageEvent) {
+    // eslint-disable-next-line no-console
     console.log('Получены данные', event.data);
     const data = JSON.parse(event.data);
 
@@ -69,6 +72,7 @@ export class WS {
   }
 
   private onError(event: ErrorEvent) {
+    // eslint-disable-next-line no-console
     console.log('Ошибка', event.message);
   }
 
@@ -128,6 +132,7 @@ export class WS {
         this.chatId = chatId;
         this.userId = userId;
       })
+    // eslint-disable-next-line no-console
       .catch((error) => console.log('Ошибка установки соединения', error));
   }
 }

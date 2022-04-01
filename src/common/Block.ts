@@ -84,6 +84,7 @@ class Block {
   }
 
   componentDidUpdate(oldProps: TProps, newProps: TProps) {
+    // eslint-disable-next-line no-console
     console.log(oldProps, newProps);
 
     return true;

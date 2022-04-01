@@ -44,39 +44,51 @@ export class MessagesPage extends Block {
   }
 
   addUserToChat() {
+    // eslint-disable-next-line no-alert
     const userId = prompt('Введите ID пользователя для добавления в текущий чат');
     if (userId) {
       ChatController.addUserToChat(store.getState().currentChatId, +userId)
+      // eslint-disable-next-line no-alert
         .then(() => alert('Пользователь успешно добавлен!'))
+      // eslint-disable-next-line no-alert
         .catch((error) => alert(`Ошибка выполнения запроса! ${error ? error.reason : ''}`));
     } else {
+      // eslint-disable-next-line no-alert
       alert('Поле не должно быть пустым!');
     }
   }
 
   removeUserFromChat() {
+    // eslint-disable-next-line no-alert
     const userId = prompt('Введите ID пользователя для удаления из текущего чата');
     if (userId) {
       ChatController.removeUserFromChat(store.getState().currentChatId, +userId)
+      // eslint-disable-next-line no-alert
         .then(() => alert('Пользователь успешно удалён!'))
+      // eslint-disable-next-line no-alert
         .catch((error) => alert(`Ошибка выполнения запроса! ${error ? error.reason : ''}`));
     } else {
+      // eslint-disable-next-line no-alert
       alert('Поле не должно быть пустым!');
     }
   }
 
   createChat() {
+    // eslint-disable-next-line no-alert
     const chatTitle = prompt('Введите название чата');
     if (chatTitle) {
       ChatController.createChat(chatTitle)
         .then(() => ChatController.getChats())
+      // eslint-disable-next-line no-alert
         .catch((error) => alert(`Ошибка выполнения запроса! ${error ? error.reason : ''}`));
     } else {
+      // eslint-disable-next-line no-alert
       alert('Название чата не должно быть пустым!');
     }
   }
 
   deleteChat() {
+    // eslint-disable-next-line no-alert
     const result = window.confirm('Вы действительно хотите удалить этот чат?');
 
     if (result) {
@@ -85,11 +97,13 @@ export class MessagesPage extends Block {
           store.set('messageList', []);
           ChatController.getChats();
         })
+      // eslint-disable-next-line no-alert
         .catch((error) => alert(`Ошибка выполнения запроса! ${error ? error.reason : ''}`));
     }
   }
 
   getProfileInfo() {
+    // eslint-disable-next-line no-alert
     AuthController.fetchUser().catch((error) => alert(`Ошибка запроса данных пользователя! ${error ? error.reason : ''}`));
   }
 
@@ -106,6 +120,7 @@ export class MessagesPage extends Block {
       store.clearUserInfo(); // Заметаем следы ;)
       const router = new Router();
       router.go('/signin');
+      // eslint-disable-next-line no-alert
     }).catch((error) => alert(`Ошибка выполнения запроса /logout! ${error ? error.reason : ''}`));
   }
 

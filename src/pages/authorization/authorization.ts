@@ -27,11 +27,13 @@ export class AuthorizationPage extends Block {
     if (data) {
       AuthController.signIn(data as SignInData)
         .then(() => {
-          console.log('Авторизация выполнена успешно!');
+          // eslint-disable-next-line no-console
+          console.log('Авторизация выполнена успешно >>>');
           ChatController.getChats();
           const router = new Router();
           router.go('/messages');
         })
+      // eslint-disable-next-line no-alert
         .catch((error) => alert(`Ошибка выполнения запроса авторизации! ${error ? error.reason : ''}`));
     }
   }

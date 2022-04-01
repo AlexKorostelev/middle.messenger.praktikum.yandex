@@ -43,7 +43,9 @@ export class ProfilePage extends Block {
     );
     if (data) {
       UserController.updateProfile(data as IProfileData)
+      // eslint-disable-next-line no-alert
         .then(() => alert('Профиль успешно обновлен!'))
+      // eslint-disable-next-line no-alert
         .catch((error) => alert(`Ошибка выполнения запроса обновления профиля! ${error ? error.reason : ''}`));
     }
   }
