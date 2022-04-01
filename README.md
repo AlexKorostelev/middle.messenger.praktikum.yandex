@@ -49,4 +49,3 @@ npm run lint
 ```
 npm run deploy
 ```
-
