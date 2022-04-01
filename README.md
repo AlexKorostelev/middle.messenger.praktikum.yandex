@@ -1,6 +1,7 @@
 # Веб-приложение для обмена сообщениями.
-### Ссылка на ПР: [https://github.com/AlexKorostelev/middle.messenger.praktikum.yandex/pull/3](https://github.com/AlexKorostelev/middle.messenger.praktikum.yandex/pull/3 "Ссылка на ПР")
+### Ссылка на ПР: [https://github.com/AlexKorostelev/middle.messenger.praktikum.yandex/pull/4](https://github.com/AlexKorostelev/middle.messenger.praktikum.yandex/pull/4 "Ссылка на ПР")
 ### Ссылка на главную страницу: [https://alex-korostelev-messenger.netlify.app/](https://alex-korostelev-messenger.netlify.app/ "Ссылка на страничку приложения")
+### Ссылка страницы на heroku: [https://alex-kor-messenger.herokuapp.com/](https://alex-kor-messenger.herokuapp.com/ "Ссылка страницы на heroku")
 ### Добавлена работа с Websocket:
 * Переключение между чатами
 * Подгрузка последних сообщений чата
@@ -11,6 +12,8 @@
 
 ### В качестве дизайн-макета использовались [шаблоны от Яндекс](https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1 "Ссылка на макеты Figma") и веб-приложение Телеграмм.
 ### Используемые технологии:
+* Webpack
+* Docker
 * Шаблонизатор handlebars
 * Rest-api
 * Node JS
@@ -26,12 +29,24 @@
 ```
 npm run start
 ```
-### Запуск проекта локально (parcel, http://localhost:1234):
+### Запуск проекта локально (webpack DevServer, http://localhost:9001):
 ```
-npm run dev
+npm run serve
 ```
 ### Сборка проекта (в директорий build):
 ```
 npm run build
+```
+### Запуск unit-тестов:
+```
+npm run test
+```
+### Запуск линтера:
+```
+npm run lint
+```
+### Запуск deploy-скрипта:
+```
+npm run deploy
 ```
 
