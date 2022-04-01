@@ -45,6 +45,34 @@ export const validateInputs = (...items: IValidationInput[]) => {
 
   if (inputsValidationResults.every((item) => item.validationOK)) {
     // eslint-disable-next-line no-console
-    console.log(inputsValidationResults.reduce((acc, cur) => Object.assign(acc, { [cur.inputName]: cur.inputValue }), {}));
+    return inputsValidationResults.reduce((acc, cur) => Object.assign(acc, { [cur.inputName]: cur.inputValue }), {});
   }
+
+  return undefined;
+};
+
+export const getParentDataSetParam = (element: HTMLElement, className: string, dataSetParam: string): string | undefined => {
+  let copyElement = element;
+
+  while (copyElement.className !== className) {
+    if (copyElement.parentElement !== null) {
+      copyElement = copyElement.parentElement;
+    } else {
+      return undefined;
+    }
+  }
+
+  return copyElement.dataset[dataSetParam];
+};
+
+export const scrollToLastMessage = () => {
+  setTimeout(() => {
+    const collection = document.getElementsByClassName('messages-container');
+    if (collection.length) {
+      collection[0].scrollTo({
+        top: collection[0].scrollHeight,
+        behavior: 'smooth',
+      });
+    }
+  }, 200);
 };

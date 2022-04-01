@@ -2,7 +2,7 @@ import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
 import EventBus from './EventBus';
 
-abstract class Block<Props extends {}> {
+class Block<Props extends {}> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -166,6 +166,18 @@ abstract class Block<Props extends {}> {
 
   private _createDocumentElement(tagName: string) {
     return document.createElement(tagName);
+  }
+
+  show() {
+    if (this.element) {
+      this.element.style.display = 'flex';
+    }
+  }
+
+  hide() {
+    if (this.element) {
+      this.element.style.display = 'none';
+    }
   }
 
   compile(templateString: string, context: Record<string, any>) {

@@ -23,9 +23,6 @@ export class ErrorForm extends Block<IButtonProps> {
                 <p class="error-text">
                     Ошибка <b>{{errorNumber}}</b>. Уже чиним! ;)
                 </p>
-                <nav>
-                    <a href="../../index.html">На главную</a>
-                </nav>
             </div>
         </div>
     `;
