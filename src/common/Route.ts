@@ -27,11 +27,13 @@ export class Route {
     return pathname === this._pathname;
   }
 
-  private _render(query, block) {
+  private _render(query: string, block: Block) {
     const root = document.querySelector(query);
-    root.innerHTML = '';
-    root.append(block.getContent());
-    block.dispatchComponentDidMount();
+    if (root !== null) {
+      root.innerHTML = '';
+      root.append(block.getContent() as Node);
+      block.dispatchComponentDidMount();
+    }
 
     return root;
   }
@@ -39,11 +41,11 @@ export class Route {
   render() {
     if (!this._block) {
       this._block = new this._blockClass();
-      this._render(this._props.rootQuery, this._block);
+      this._render(this._props.rootQuery as string, this._block);
 
       return;
     }
 
-    this._render(this._props.rootQuery, this._block);
+    this._render(this._props.rootQuery as string, this._block);
   }
 }

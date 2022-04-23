@@ -7,7 +7,7 @@ export interface ILinkProps extends WithRouterProps {
   text: string;
 }
 
-export class Link extends Block<ILinkProps> {
+export class Link extends Block {
   constructor({
     to, text, router,
   }: ILinkProps) {

@@ -7,8 +7,6 @@ class Router {
 
   private history: any = window.history;
 
-  private _currentRoute: Route | null = null;
-
   private static __instance: Router;
 
   constructor() {
@@ -19,7 +17,6 @@ class Router {
 
     this.routes = [];
     this.history = window.history;
-    this._currentRoute = null;
 
     Router.__instance = this;
   }
@@ -46,8 +43,6 @@ class Router {
     if (!route) {
       return;
     }
-
-    this._currentRoute = route;
 
     route.render();
   }

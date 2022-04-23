@@ -8,7 +8,7 @@ import AuthController from '../../controllers/AuthController';
 import { SignUpData } from '../../api/AuthAPI';
 import Router from '../../common/Router';
 
-export class RegistrationPage extends Block<{ onClick: Function }> {
+export class RegistrationPage extends Block {
   constructor() {
     super({
       onSignUp: () => this.onSignUp(),
@@ -29,6 +29,7 @@ export class RegistrationPage extends Block<{ onClick: Function }> {
     if (data) {
       AuthController.signUp(data as SignUpData)
         .then(() => new Router().go('/messages'))
+      // eslint-disable-next-line no-alert
         .catch((error) => alert(`Ошибка выполнения запроса регистрации! ${error ? error.reason : ''}`));
     }
   }

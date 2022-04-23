@@ -14,20 +14,13 @@ interface IInputProps {
   regexp: string;
 }
 
-interface IInput extends IInputProps {
-  events: {
-    focus: Function;
-    blur: Function;
-  }
-}
-
-export class Input extends Block<IInput> {
+export class Input extends Block {
   constructor(props: IInputProps) {
     super({
       ...props,
       events: {
-        focus: () => validateInput(this.props.inputId, this.props.regexp),
-        blur: () => validateInput(this.props.inputId, this.props.regexp),
+        focus: () => validateInput(this.props.inputId as string, this.props.regexp as string),
+        blur: () => validateInput(this.props.inputId as string, this.props.regexp as string),
       },
     });
   }

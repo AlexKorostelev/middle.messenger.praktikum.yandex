@@ -19,7 +19,7 @@ export interface SignInData {
 export default class AuthAPI {
   protected http: HTTPTransport;
 
-  protected constructor() {
+  constructor() {
     this.http = new HTTPTransport('/auth');
   }
 

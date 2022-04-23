@@ -20,11 +20,7 @@ interface IProfileProps {
   avatar?: string;
 }
 
-interface IProfile extends IProfileProps {
-  onClick: Function;
-}
-
-export class ProfilePage extends Block<IProfile> {
+export class ProfilePage extends Block {
   constructor(props: IProfileProps) {
     super({
       ...props,
@@ -47,7 +43,9 @@ export class ProfilePage extends Block<IProfile> {
     );
     if (data) {
       UserController.updateProfile(data as IProfileData)
+      // eslint-disable-next-line no-alert
         .then(() => alert('Профиль успешно обновлен!'))
+      // eslint-disable-next-line no-alert
         .catch((error) => alert(`Ошибка выполнения запроса обновления профиля! ${error ? error.reason : ''}`));
     }
   }
